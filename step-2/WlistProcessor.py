@@ -13,7 +13,7 @@ lines = [line.lower() for line in lines]
 
 for line in lines: 
     line_new = line.translate(None, string.punctuation)
-    transcript = line_new.split()[1]
+    transcript = line_new.split('\t')[1]
     wlist += [w for w in transcript.split() if w not in wlist]
 
 wlist.sort()
