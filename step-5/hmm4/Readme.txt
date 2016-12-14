@@ -1,0 +1,1 @@
+http://www.voxforge.org/home/dev/acousticmodels/linux/create/htkjulius/tutorial/monophones/step-7
