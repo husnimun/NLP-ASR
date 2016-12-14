@@ -1,6 +1,5 @@
 #!/usr/bin/python
 
-import string
 
 lines = []
 wlist = []
@@ -12,7 +11,16 @@ for prefix in transcript_prefix:
 lines = [line.lower() for line in lines]
 
 for line in lines: 
-    line_new = line.translate(None, string.punctuation)
+    line_new = line.replace('.', '')
+    line_new = line_new.replace(',', '')
+    line_new = line_new.replace('!', '')
+    line_new = line_new.replace(':', '')
+    line_new = line_new.replace('?', '')
+    line_new = line_new.replace('\'', '')
+    line_new = line_new.replace('\"', '')
+    # line_new = line_new.translate(None, string.punctuation)
+
+
     transcript = line_new.split('\t')[1]
     wlist += [w for w in transcript.split() if w not in wlist]
 
