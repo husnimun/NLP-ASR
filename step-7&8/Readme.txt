@@ -1,0 +1,2 @@
+1. HVite -l '*' -o SWT -b silence -C config -a -H macros -H hmmdefs -i aligned.mlf -m -t 250.0 -y lab -I words-final.mlf -S train.scp dict monophones1
+2. HVite -H macros hmmdefs -S test.scp -| '*' -i recout.mlf -w wdnet -p 0.0 -s 5.0 dict monophones1
