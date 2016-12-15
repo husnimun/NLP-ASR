@@ -6435,6 +6435,8 @@ sensornya       s e n s o r ny a
 sentimen        s e n t i m e n
 sentral         s e n t r a l
 sentralisme     s e n t r a l i s m @
+SENT-END [] sil
+SENT-START [] sil
 seorang         s @ k o r a ng
 seorang         s @ o r a ng
 sepak           s @ p a k
@@ -6564,6 +6566,7 @@ silatnas        s i l a t n a s
 silaturahmi     s i l a t u r a h m i
 silitonga       s i l i t o ng a
 siliwangi       s i l i w a ng i
+silence sil
 siloam          s i l o a m
 sim             s i m
 simatupang      s i m a t u p a ng
