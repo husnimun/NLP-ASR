@@ -1,0 +1,2511 @@
+STAT: include config: julius.conf
+STAT: jconf successfully finalized
+STAT: *** loading AM00 _default
+Stat: init_phmm: Reading in HMM definition
+Stat: rdhmmdef: ascii format HMM definition
+Stat: rdhmmdef: limit check passed
+Stat: check_hmm_restriction: an HMM with several arcs from initial state found: "sp"
+Stat: rdhmmdef: this HMM requires multipath handling at decoding
+Stat: rdhmmdef: no <SID> embedded
+Stat: rdhmmdef: assign SID by the order of appearance
+Stat: init_phmm: defined HMMs:    34
+Stat: init_phmm: logical names:    34
+Stat: init_phmm: base phones:    34 used in logical
+Stat: init_phmm: finished reading HMM definitions
+STAT: *** AM00 _default loaded
+STAT: *** loading LM00 _default
+Stat: init_voca: read 182669 words
+Stat: init_ngram: reading in binary n-gram from lm_bin
+Stat: ngram_read_bin: file version: 5
+Stat: ngram_read_bin_v5: this is forward 3-gram file
+stat: ngram_read_bin_v5: reading 1-gram
+stat: ngram_read_bin_v5: reading 2-gram
+stat: ngram_read_bin_v5: reading 3-gram
+Stat: ngram_read_bin: making entry name index
+Stat: init_ngram: found unknown word entry "<unk>"
+Stat: init_ngram: finished reading n-gram
+Stat: init_ngram: mapping dictonary words to n-gram entries
+Warning: ngram_lookup: "!SIL" not exist in N-gram, treat as unknown
+Stat: init_ngram: finished word-to-ngram mapping
+Warning: BOS word "<s>" has unigram prob of "-99"
+Warning: assigining value of EOS word "</s>": -1.591803
+STAT: *** LM00 _default loaded
+STAT: ------
+STAT: All models are ready, go for final fusion
+STAT: [1] create MFCC extraction instance(s)
+STAT: *** create MFCC calculation modules from AM
+STAT: AM 0 _default: create a new module MFCC01
+STAT: 1 MFCC modules created
+STAT: [2] create recognition processing instance(s) with AM and LM
+STAT: composing recognizer instance SR00 _default (AM00 _default, LM00 _default)
+STAT: Building HMM lexicon tree
+STAT: lexicon size: 1671380 nodes
+STAT: coordination check passed
+STAT: make successor lists for unigram factoring
+STAT: done
+STAT:  1-gram factoring values has been pre-computed
+STAT: SR00 _default composed
+STAT: [3] initialize for acoustic HMM calculation
+Stat: outprob_init: state-level mixture PDFs, use calc_mix()
+Stat: addlog: generating addlog table (size = 1953 kB)
+Stat: addlog: addlog table generated
+STAT: [4] prepare MFCC storage(s)
+STAT: All init successfully done
+
+STAT: ###### initialize input device
+----------------------- System Information begin ---------------------
+JuliusLib rev.4.3.1 (fast)
+
+Engine specification:
+ -  Base setup   : fast
+ -  Supported LM : DFA, N-gram, Word
+ -  Extension    : WordsInt
+ -  Compiled by  : gcc -O6 -fomit-frame-pointer
+
+------------------------------------------------------------
+Configuration of Modules
+
+ Number of defined modules: AM=1, LM=1, SR=1
+
+ Acoustic Model (with input parameter spec.):
+ - AM00 "_default"
+	hmmfilename=../hmm9/hmmdefs
+
+ Language Model:
+ - LM00 "_default"
+	vocabulary filename=lexicon
+	n-gram  filename=lm_bin (binary format)
+
+ Recognizer:
+ - SR00 "_default" (AM00, LM00)
+
+------------------------------------------------------------
+Speech Analysis Module(s)
+
+[MFCC01]  for [AM00 _default]
+
+ Acoustic analysis condition:
+	       parameter = MFCC_0_D_A (39 dim. from 12 cepstrum + c0)
+	sample frequency = 16000 Hz
+	   sample period =  625  (1 = 100ns)
+	     window size =  400 samples (25.0 ms)
+	     frame shift =  160 samples (10.0 ms)
+	    pre-emphasis = 0.97
+	    # filterbank = 24
+	   cepst. lifter = 22
+	      raw energy = False
+	energy normalize = False
+	    delta window = 2 frames (20.0 ms) around
+	      acc window = 2 frames (20.0 ms) around
+	     hi freq cut = OFF
+	     lo freq cut = OFF
+	 zero mean frame = OFF
+	       use power = OFF
+	             CVN = OFF
+	            VTLN = OFF
+
+    spectral subtraction = off
+
+ cep. mean normalization = no
+ cep. var. normalization = no
+
+	 base setup from = Julius defaults
+
+------------------------------------------------------------
+Acoustic Model(s)
+
+[AM00 "_default"]
+
+ HMM Info:
+    34 models, 99 states, 99 mpdfs, 99 Gaussians are defined
+	      model type = context dependency handling OFF
+      training parameter = MFCC_D_A_0
+	   vector length = 39
+	number of stream = 1
+	     stream info = [0-38]
+	cov. matrix type = DIAGC
+	   duration type = NULLD
+	max mixture size = 1 Gaussians
+     max length of model = 5 states
+     logical base phones = 34
+       model skip trans. = exist, require multi-path handling
+      skippable models = sp (1 model(s))
+
+ AM Parameters:
+        Gaussian pruning = none (full computation)  (-gprune)
+    short pause HMM name = "sp" specified, "sp" applied (physical)  (-sp)
+  cross-word CD on pass1 = handle by approx. (use 3-best of same LC)
+   sp transition penalty = -1.0
+
+------------------------------------------------------------
+Language Model(s)
+
+[LM00 "_default"] type=n-gram
+
+ N-gram info:
+	            spec = 3-gram, forward (left-to-right)
+	        OOV word = <unk>(id=32)
+	        OOV size = 2 words in dict
+	    wordset size = 179235
+	  1-gram entries =     179235  (  1.4 MB)
+	  2-gram entries =    2026095  ( 23.8 MB) (15% are valid contexts)
+	  3-gram entries =     958584  (  9.4 MB)
+	           pass1 = 2-gram in the forward n-gram
+
+ Vocabulary Info:
+        vocabulary size  = 182669 words, 1472868 models
+        average word len = 8.1 models, 24.2 states
+       maximum state num = 276 nodes per word
+       transparent words = not exist
+       words under class = not exist
+
+ Parameters:
+	(-silhead)head sil word = 182667: "<s> @0.000000 [<s>] sil(sil)"
+	(-siltail)tail sil word = 182668: "</s> @0.000000 [</s>] sil(sil)"
+
+------------------------------------------------------------
+Recognizer(s)
+
+[SR00 "_default"]  AM00 "_default"  +  LM00 "_default"
+
+ Lexicon tree:
+	 total node num = 1671380
+	  root node num =    183
+	(148 hi-freq. words are separated from tree lexicon)
+	  leaf node num = 182669
+	 fact. node num = 182669
+
+ Inter-word N-gram cache: 
+	root node to be cached = 150 / 183 (isolated only)
+	word ends to be cached = 179235 (all)
+	  max. allocation size = 107MB
+	(-lmp)  pass1 LM weight = 5.0  ins. penalty = -1.0
+	(-lmp2) pass2 LM weight = 6.0  ins. penalty = +0.0
+	(-transp)trans. penalty = +0.0 per word
+	(-cmalpha)CM alpha coef = 0.050000
+
+ Search parameters: 
+	    multi-path handling = yes, multi-path mode enabled
+	(-b) trellis beam width = 400 (-1 or not specified - guessed)
+	(-bs)score pruning thres= disabled
+	(-n)search candidate num= 1
+	(-s)  search stack size = 500
+	(-m)    search overflow = after 2000 hypothesis poped
+	        2nd pass method = searching sentence, generating N-best
+	(-b2)  pass2 beam width = 30
+	(-lookuprange)lookup range= 5  (tm-5 <= t <tm+5)
+	(-sb)2nd scan beamthres = 80.0 (in logscore)
+	(-n)        search till = 1 candidates found
+	(-output)    and output = 1 candidates out of above
+	 factoring score: 1-gram prob. (statically assigned beforehand)
+	short pause segmentation = off
+	fall back on search fail = off, returns search failure
+
+------------------------------------------------------------
+Decoding algorithm:
+
+	1st pass input processing = buffered, batch
+	1st pass method = 1-best approx. generating indexed trellis
+	output word confidence measure based on search-time scores
+
+------------------------------------------------------------
+FrontEnd:
+
+ Input stream:
+	             input type = waveform
+	           input source = waveform file
+	          input filelist = wavlist
+	          sampling freq. = 16000 Hz required
+	         threaded A/D-in = supported, off
+	   zero frames stripping = on
+	         silence cutting = off
+	    long-term DC removal = off
+	    long-term DC removal = off
+	    level scaling factor = 1.00 (disabled)
+	      reject short input = off
+	      reject  long input = off
+
+----------------------- System Information end -----------------------
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C021.wav
+STAT: 107894 samples (6.74 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> dimana sistem jsn menguasai mayoritas pasat selulernya </s>
+pass1_best_wordseq: <s> dimana sistem jsn menguasai mayoritas pasat selulernya </s>
+pass1_best_phonemeseq: sil | d i m a n a | s i s t @ m | j e e s e n | m @ ng u a s a i | m a y o r i t a s | p a s a t | s e l u l e r ny a | sil
+pass1_best_score: -22538.679688
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 266 generated, 266 pushed, 24 nodes popped in 672
+sentence1: <s> di mana sistem gsm menguasai mayoritas pasar selulernya </s>
+wseq1: <s> di mana sistem gsm menguasai mayoritas pasar selulernya </s>
+phseq1: sil | d i | m a n a | s i s t @ m | g e e s e m | m @ ng u a s a i | m a y o r i t a s | p a s a r | s e l u l e r ny a | sil
+cmscore1: 0.304 0.664 0.179 0.569 0.243 0.788 0.974 0.240 0.593 1.000
+score1: -22552.927734
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LMM134F005.wav
+STAT: 119506 samples (7.47 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> t simposium diobati marleve exiles enam praktik est. itu sidang ketatanegaraan pasca reformasi </s>
+pass1_best_wordseq: <s> t simposium diobati marleve exiles enam praktik est. itu sidang ketatanegaraan pasca reformasi </s>
+pass1_best_phonemeseq: sil | t | s i m p o s i u m | d i k o b a t i | m a r l e f | @ k s i l @ s | @ n a m | p r a k t i k | @ s t | i t u | s i d a ng | k @ t a t a n @ g a r a a n | p a s c a | r e f o r m a s i | sil
+pass1_best_score: -26701.798828
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 6385 generated, 2386 pushed, 311 nodes popped in 745
+sentence1: <s> t simposium diobati marleve exiles enam kaki ke situ sidang ketatanegaraan pasca reformasi </s>
+wseq1: <s> t simposium diobati marleve exiles enam kaki ke situ sidang ketatanegaraan pasca reformasi </s>
+phseq1: sil | t | s i m p o s i u m | d i k o b a t i | m a r l e f | @ k s i l @ s | @ n a m | k a k i | k @ | s i t u | s i d a ng | k @ t a t a n @ g a r a a n | p a s c a | r e f o r m a s i | sil
+cmscore1: 1.000 0.523 0.957 0.201 0.208 0.410 0.217 0.204 0.204 0.164 0.193 1.000 0.916 0.352 1.000
+score1: -26754.388672
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C001.wav
+STAT: 63173 samples (3.95 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> datang diwartakan tiga </s>
+pass1_best_wordseq: <s> datang diwartakan tiga </s>
+pass1_best_phonemeseq: sil | d a t a ng | d i w a r t a k a n | t i g a | sil
+pass1_best_score: -12459.119141
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 2669 generated, 1206 pushed, 114 nodes popped in 393
+sentence1: <s> datang dua papan tiga </s>
+wseq1: <s> datang dua papan tiga </s>
+phseq1: sil | d a t a ng | d u a | p a p a n | t i g a | sil
+cmscore1: 0.144 0.433 0.128 0.103 0.171 1.000
+score1: -12481.515625
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B011.wav
+STAT: 124097 samples (7.76 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> disampaikan juga bawang <euh> berisi akan memberikan bantuan kepada id mengisinya </s>
+pass1_best_wordseq: <s> disampaikan juga bawang <euh> berisi akan memberikan bantuan kepada id mengisinya </s>
+pass1_best_phonemeseq: sil | d i s a m p ai k a n | j u g a | b a w a ng | sil | b e r i s i | a k a n | m @ m b @ r i k a n | b a n t u a n | k @ p a d a | ai | m @ ng i s i ny a | sil
+pass1_best_score: -24934.246094
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 1132 generated, 896 pushed, 76 nodes popped in 774
+sentence1: <s> disampaikan juga bahwa <euh> berisi akan memberikan bantuan kepada indonesia </s>
+wseq1: <s> disampaikan juga bahwa <euh> berisi akan memberikan bantuan kepada indonesia </s>
+phseq1: sil | d i s a m p ai k a n | j u g a | b a h w a | sil | b e r i s i | a k a n | m @ m b @ r i k a n | b a n t u a n | k @ p a d a | i n d o n e s i a | sil
+cmscore1: 0.333 0.554 0.419 0.157 0.181 0.330 0.445 0.591 0.500 0.361 0.074 1.000
+score1: -24940.302734
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C013.wav
+STAT: 88697 samples (5.54 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> dadakan trans bantahan info perdagangan tkw </s>
+pass1_best_wordseq: <s> dadakan trans bantahan info perdagangan tkw </s>
+pass1_best_phonemeseq: sil | d a d a k a n | t r a n s | b a n t a h a n | i n f o | p @ r d a g a ng a n | t e k a w e | sil
+pass1_best_score: -18044.757812
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 1542 generated, 949 pushed, 69 nodes popped in 552
+sentence1: <s> dadakan trans bantah info perdagangan tkw </s>
+wseq1: <s> dadakan trans bantah info perdagangan tkw </s>
+phseq1: sil | d a d a k a n | t r a n s | b a n t a h | i n f o | p @ r d a g a ng a n | t e k a w e | sil
+cmscore1: 0.146 0.081 0.438 0.244 0.371 0.864 0.426 1.000
+score1: -18065.007812
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LBM187J005.wav
+STAT: 169351 samples (10.58 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> pimpinan !SIL dan anggota <unk> dewan perwakilan rakyat !SIL ke republik iping dom s ya <euh> yang terhormat </s>
+pass1_best_wordseq: <s> pimpinan !SIL dan anggota <unk> dewan perwakilan rakyat !SIL ke republik iping dom s ya <euh> yang terhormat </s>
+pass1_best_phonemeseq: sil | p i m p i n a n | sil | d a n | a ng g o t a | sil | d e w a n | p @ r w a k i l a n | r a k y a t | sil | k @ | r e p u b l i k | i p i ng | d o m | e s | y a | sil | y a ng | t @ r h o r m a t | sil
+pass1_best_score: -34960.281250
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 6760 generated, 3580 pushed, 420 nodes popped in 1056
+sentence1: <s> pimpinan !SIL dan anggota <unk> dewan perwakilan rakyat !SIL ke republik i <unk> tim dom s ya <euh> yang terhormat </s>
+wseq1: <s> pimpinan !SIL dan anggota <unk> dewan perwakilan rakyat !SIL ke republik i <unk> tim dom s ya <euh> yang terhormat </s>
+phseq1: sil | p i m p i n a n | sil | d a n | a ng g o t a | sil | d e w a n | p @ r w a k i l a n | r a k y a t | sil | k @ | r e p u b l i k | i | sil | t i m | d o m | e s | y a | sil | y a ng | t @ r h o r m a t | sil
+cmscore1: 0.213 0.479 0.163 0.804 0.702 0.102 0.994 0.431 0.765 0.121 0.472 0.336 0.339 0.111 0.153 0.169 0.071 0.276 0.137 0.981 0.278 1.000
+score1: -35002.105469
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LMM134F009.wav
+STAT: 115992 samples (7.25 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> pupuk acara bem dyl adi <unk> tujukan untuk mengutuk lasana syamanisme ditengah menururnya rasa kebangsaan </s>
+pass1_best_wordseq: <s> pupuk acara bem dyl adi <unk> tujukan untuk mengutuk lasana syamanisme ditengah menururnya rasa kebangsaan </s>
+pass1_best_phonemeseq: sil | p u p u k | a c a r a | b @ m | d y l | a d i | sil | t u j u k a n | u n t u k | m @ ng u t u k | l a s a n a | sy a m a n i s m @ | d i t @ ng a h | m @ n u r u r ny a | r a s a | k @ b a ng s a a n | sil
+pass1_best_score: -26081.257812
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 10649 generated, 3706 pushed, 412 nodes popped in 723
+sentence1: <s> pupuk acara bem diyala di <euh> tujukan untuk mengutuk lasana syamali suai di tengah menururnya rasa kebangsaan </s>
+wseq1: <s> pupuk acara bem diyala di <euh> tujukan untuk mengutuk lasana syamali suai di tengah menururnya rasa kebangsaan </s>
+phseq1: sil | p u p u k | a c a r a | b @ m | d i y a l a | d i | sil | t u j u k a n | u n t u k | m @ ng u t u k | l a s a n a | sy a m a l i | s u ai | d i | t @ ng a h | m @ n u r u r ny a | r a s a | k @ b a ng s a a n | sil
+cmscore1: 0.168 0.127 0.313 0.138 0.337 0.290 0.159 0.689 0.427 0.248 0.384 0.129 0.146 0.163 0.320 0.517 0.547 0.639 1.000
+score1: -26142.109375
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LMM134F003.wav
+STAT: 102269 samples (6.39 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> hidayat marwah i mengkhawatirkan jika mya buru apuh makan pelaku bas mati mengancam </s>
+pass1_best_wordseq: <s> hidayat marwah i mengkhawatirkan jika mya buru apuh makan pelaku bas mati mengancam </s>
+pass1_best_phonemeseq: sil | h i d a y a t | m a r w a h | i | m @ ng kh a w a t i r k a n | j i k a | m y a | b u r u | a p u h | m a k a n | p @ l a k u | b a s | m a t i | m @ ng a n c a m | sil
+pass1_best_score: -22934.867188
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 5673 generated, 2776 pushed, 390 nodes popped in 637
+sentence1: <s> hidayatullah i mengkhawatirkan jika me ya buru atuh maka pelaku bas mati mengancam </s>
+wseq1: <s> hidayatullah i mengkhawatirkan jika me ya buru atuh maka pelaku bas mati mengancam </s>
+phseq1: sil | h i d a y a t u l o h | i | m @ ng kh a w a t i r k a n | j i k a | m i | y a | b u r u | a t u h | m a k a | p @ l a k u | b a s | m a t i | m @ ng a n c a m | sil
+cmscore1: 1.000 0.328 0.278 0.766 0.739 0.250 0.249 0.242 0.328 0.309 0.628 0.396 0.125 0.616 1.000
+score1: -22993.183594
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C028.wav
+STAT: 93759 samples (5.86 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> kyai sea blong kalau kalau brankas dengkel dibawa kabur perampok </s>
+pass1_best_wordseq: <s> kyai sea blong kalau kalau brankas dengkel dibawa kabur perampok </s>
+pass1_best_phonemeseq: sil | k i y a | s i | b l o ng | k a l au | k a l au | b r a ng k a s | d e ng k e l | d i b a w a | k a b u r | p @ r a m p o k | sil
+pass1_best_score: -19204.638672
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 3369 generated, 1311 pushed, 176 nodes popped in 584
+sentence1: <s> p yasin blong kalau kalau brankas dengkel dibawa kabur perampok </s>
+wseq1: <s> p yasin blong kalau kalau brankas dengkel dibawa kabur perampok </s>
+phseq1: sil | p | y a s i n | b l o ng | k a l au | k a l au | b r a ng k a s | d e ng k e l | d i b a w a | k a b u r | p @ r a m p o k | sil
+cmscore1: 0.171 0.207 0.101 0.237 0.396 0.759 0.525 0.287 0.949 0.909 0.046 1.000
+score1: -19228.644531
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LMM134F001.wav
+STAT: 99035 samples (6.19 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> faksi partai di muka ditenteng menggelar sarasehan diganti magribi hn </s>
+pass1_best_wordseq: <s> faksi partai di muka ditenteng menggelar sarasehan diganti magribi hn </s>
+pass1_best_phonemeseq: sil | f a k s i | p a r t ai | d i | m u k a | d i t e n t e ng | m @ ng g @ l a r | s a r a s e h a n | d i g a n t i | m a g r i b i | h a e n | sil
+pass1_best_score: -21982.089844
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 3692 generated, 2227 pushed, 244 nodes popped in 617
+sentence1: <s> faksi partai di muka ditenteng menggelar sarasehan diganti magribi hn </s>
+wseq1: <s> faksi partai di muka ditenteng menggelar sarasehan diganti magribi hn </s>
+phseq1: sil | f a k s i | p a r t ai | d i | m u k a | d i t e n t e ng | m @ ng g @ l a r | s a r a s e h a n | d i g a n t i | m a g r i b i | h a e n | sil
+cmscore1: 0.177 0.572 0.357 0.724 0.168 0.298 0.676 0.998 0.518 0.263 0.349 1.000
+score1: -22027.769531
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D024.wav
+STAT: 70388 samples (4.40 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> hanya sadewa yang menentang stikes ada segala-segalanya </s>
+pass1_best_wordseq: <s> hanya sadewa yang menentang stikes ada segala-segalanya </s>
+pass1_best_phonemeseq: sil | h a ny a | s a d e w a | y a ng | m @ n @ n t a ng | s t i k @ s | a d a | s @ g a l a s @ g a l a ny a | sil
+pass1_best_score: -14704.690430
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 2841 generated, 1458 pushed, 173 nodes popped in 438
+sentence1: <s> hanya sadewa yang menentang sri kesah dan segala-segalanya </s>
+wseq1: <s> hanya sadewa yang menentang sri kesah dan segala-segalanya </s>
+phseq1: sil | h a ny a | s a d e w a | y a ng | m @ n @ n t a ng | s r i | k @ s a h | d a n | s @ g a l a s @ g a l a ny a | sil
+cmscore1: 0.210 0.453 0.625 0.711 0.423 0.149 0.151 0.241 0.138 1.000
+score1: -14730.407227
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LBM187J009.wav
+STAT: 161350 samples (10.08 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> pada hari yang ber bahaja ini <euh> cita dapat hadir dalam rapat paripurna <euh> dpr <unk> pii </s>
+pass1_best_wordseq: <s> pada hari yang ber bahaja ini <euh> cita dapat hadir dalam rapat paripurna <euh> dpr <unk> pii </s>
+pass1_best_phonemeseq: sil | p a d a | h a r i | y a ng | b @ r | b a h a j a | i n i | sil | c i t a | d a p a t | h a d i r | d a l a m | r a p a t | p a r i p u r n a | sil | d e p e e r | sil | p e i i | sil
+pass1_best_score: -32930.851562
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 4744 generated, 2652 pushed, 292 nodes popped in 1006
+sentence1: <s> padahal yang ber bahaja ini <euh> cita dapat hadir dalam rapat paripurna <euh> dpr !SIL pt di </s>
+wseq1: <s> padahal yang ber bahaja ini <euh> cita dapat hadir dalam rapat paripurna <euh> dpr !SIL pt di </s>
+phseq1: sil | p a d a h a l | y a ng | b @ r | b a h a j a | i n i | sil | c i t a | d a p a t | h a d i r | d a l a m | r a p a t | p a r i p u r n a | sil | d e p e e r | sil | p e | d i | sil
+cmscore1: 0.446 0.102 0.757 0.159 0.169 0.237 0.158 0.299 0.866 0.756 0.612 0.388 0.235 0.140 0.572 0.126 0.094 0.034 1.000
+score1: -32972.179688
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D013.wav
+STAT: 66462 samples (4.15 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> seni budaya galak raker bangsa indonesia yang sangat khas </s>
+pass1_best_wordseq: <s> seni budaya galak raker bangsa indonesia yang sangat khas </s>
+pass1_best_phonemeseq: sil | s @ n i | b u d a y a | g a l a k | r a k @ r | b a ng s a | i n d o n e s i a | y a ng | s a ng a t | kh a s | sil
+pass1_best_score: -14280.833984
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 1750 generated, 1063 pushed, 98 nodes popped in 413
+sentence1: <s> senibudaya galak raker bangsa indonesia yang sangat khas </s>
+wseq1: <s> senibudaya galak raker bangsa indonesia yang sangat khas </s>
+phseq1: sil | s @ n i b u d a y a | g a l a k | r a k @ r | b a ng s a | i n d o n e s i a | y a ng | s a ng a t | kh a s | sil
+cmscore1: 0.197 0.566 0.189 0.114 0.580 0.703 0.701 0.641 0.233 1.000
+score1: -14309.161133
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B021.wav
+STAT: 100618 samples (6.29 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> dulu orang cq terjadi ya sebagai dubes !SIL viii nya </s>
+pass1_best_wordseq: <s> dulu orang cq terjadi ya sebagai dubes !SIL viii nya </s>
+pass1_best_phonemeseq: sil | d u l u | o r a ng | c e k i | t @ r j a d i | y a | s @ b a g ai | d u b @ s | sil | f i i i | ny a | sil
+pass1_best_score: -20400.900391
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 4318 generated, 1650 pushed, 214 nodes popped in 627
+sentence1: <s> dulu orang cq terjadi ya sebagai dubes <unk> viii nya </s>
+wseq1: <s> dulu orang cq terjadi ya sebagai dubes <unk> viii nya </s>
+phseq1: sil | d u l u | o r a ng | c e k i | t @ r j a d i | y a | s @ b a g ai | d u b @ s | sil | f i i i | ny a | sil
+cmscore1: 0.318 0.148 0.385 0.071 0.508 0.480 0.252 0.648 0.143 0.198 0.234 1.000
+score1: -20430.123047
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C017.wav
+STAT: 104782 samples (6.55 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> di kota mana saja saya bisa mendapatkan layanan teleconference </s>
+pass1_best_wordseq: <s> di kota mana saja saya bisa mendapatkan layanan teleconference </s>
+pass1_best_phonemeseq: sil | d i | k o t a | m a n a | s a j a | s a y a | b i s a | m @ n d a p a t k a n | l a y a n a n | t e l e k o n f @ r @ n s | sil
+pass1_best_score: -21890.613281
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 232 generated, 232 pushed, 19 nodes popped in 653
+sentence1: <s> di kota mana saja saya bisa mendapatkan layanan teleconference </s>
+wseq1: <s> di kota mana saja saya bisa mendapatkan layanan teleconference </s>
+phseq1: sil | d i | k o t a | m a n a | s a j a | s a y a | b i s a | m @ n d a p a t k a n | l a y a n a n | t e l e k o n f @ r @ n s | sil
+cmscore1: 0.269 0.889 0.527 0.694 0.853 0.893 0.669 0.519 0.353 0.631 1.000
+score1: -21911.880859
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C023.wav
+STAT: 92535 samples (5.78 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> di situ garis yang membawakan dari kalau sang surya tenggelam </s>
+pass1_best_wordseq: <s> di situ garis yang membawakan dari kalau sang surya tenggelam </s>
+pass1_best_phonemeseq: sil | d i | s i t u | g a r i s | y a ng | m @ m b a w a k a n | d a r i | k a l au | s a ng | s u r y a | t @ ng g @ l a m | sil
+pass1_best_score: -19164.888672
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 2239 generated, 1038 pushed, 112 nodes popped in 576
+sentence1: <s> disitu garis yang membawakan dari kala sang surya tenggelam </s>
+wseq1: <s> disitu garis yang membawakan dari kala sang surya tenggelam </s>
+phseq1: sil | d i s i t u | g a r i s | y a ng | m @ m b a w a k a n | d a r i | k a l a | s a ng | s u r y a | t @ ng g @ l a m | sil
+cmscore1: 0.223 0.331 0.283 0.272 0.257 0.250 0.420 0.716 0.619 0.492 1.000
+score1: -19187.785156
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D021.wav
+STAT: 207508 samples (12.97 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> menurut taman <unk> ke desa base pt di di lima dusun hyatt di dusun jasa usaha <unk> persen jasa tani <euh> di senja sakarya <euh> persija ya karya !SIL dan di senja satupun </s>
+pass1_best_wordseq: <s> menurut taman <unk> ke desa base pt di di lima dusun hyatt di dusun jasa usaha <unk> persen jasa tani <euh> di senja sakarya <euh> persija ya karya !SIL dan di senja satupun </s>
+pass1_best_phonemeseq: sil | m @ n u r u t | t a m a n | sil | k @ | d e s a | b @ i s | p e t e | d i | d e i | l i m a | d u s u n | h y a t t | d i | d u s u n | j a s a | u s a h a | sil | p @ r s @ n | j a s a | t a n i | sil | d i | s @ n j a | s a k a r y a | sil | p @ r s i j a | y a | k a r y a | sil | d a n | d i | s @ n j a | s a t u p u n | sil
+pass1_best_score: -44331.042969
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 15316 generated, 7192 pushed, 932 nodes popped in 1295
+sentence1: <s> menurut taman <unk> ke desa base pt di di lima dusun ya di dusun jasa usaha !SIL persen jasa tani <euh> di senja sakarya <euh> persija ya karya <unk> dan di senja satu pun </s>
+wseq1: <s> menurut taman <unk> ke desa base pt di di lima dusun ya di dusun jasa usaha !SIL persen jasa tani <euh> di senja sakarya <euh> persija ya karya <unk> dan di senja satu pun </s>
+phseq1: sil | m @ n u r u t | t a m a n | sil | k @ | d e s a | b @ i s | p e t e | d i | d e i | l i m a | d u s u n | y a | d i | d u s u n | j a s a | u s a h a | sil | p @ r s @ n | j a s a | t a n i | sil | d i | s @ n j a | s a k a r y a | sil | p @ r s i j a | y a | k a r y a | sil | d a n | d i | s @ n j a | s a t u | p u n | sil
+cmscore1: 0.313 0.143 0.194 0.120 0.543 0.840 0.202 0.179 0.323 0.297 0.670 0.410 0.268 0.426 0.441 0.835 0.648 0.115 0.359 0.942 0.207 0.146 0.210 0.606 0.332 0.149 0.717 0.498 0.289 0.106 0.540 0.175 0.495 0.260 0.205 1.000
+score1: -44434.222656
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D005.wav
+STAT: 141215 samples (8.83 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> pemilihan diawali dengan usulan nama dari peserta muktamar krueng <unk> porda <euh> pusat <unk> pedro ke majelis permusyawaratan muktamar </s>
+pass1_best_wordseq: <s> pemilihan diawali dengan usulan nama dari peserta muktamar krueng <unk> porda <euh> pusat <unk> pedro ke majelis permusyawaratan muktamar </s>
+pass1_best_phonemeseq: sil | p @ m i l i h a n | d i a w a l i | d @ ng a n | u s u l a n | n a m a | d a r i | p @ s @ r t a | m u k t a m a r | k r u e ng | sil | p o r d a | sil | p u s a t | sil | p e d r o | k @ | m a j @ l i s | p @ r m u sy a w a r a t a n | m u k t a m a r | sil
+pass1_best_score: -29834.373047
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 10272 generated, 3840 pushed, 418 nodes popped in 881
+sentence1: <s> pembinaan diawali dengan usulan nama dari peserta muktamar kruing <euh> korban <euh> pusat <euh> pedro ke majelis permusyaratan muktamar </s>
+wseq1: <s> pembinaan diawali dengan usulan nama dari peserta muktamar kruing <euh> korban <euh> pusat <euh> pedro ke majelis permusyaratan muktamar </s>
+phseq1: sil | p @ m b i n a a n | d i a w a l i | d @ ng a n | u s u l a n | n a m a | d a r i | p @ s @ r t a | m u k t a m a r | k r u i ng | sil | k o r b a n | sil | p u s a t | sil | p e d r o | k @ | m a j @ l i s | p @ r m u sy a r a t a n | m u k t a m a r | sil
+cmscore1: 0.313 0.092 0.572 0.591 0.324 0.152 0.470 0.847 0.823 0.043 0.298 0.167 0.146 0.115 0.137 0.187 0.146 0.863 0.292 0.862 1.000
+score1: -29891.480469
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C010.wav
+STAT: 118708 samples (7.42 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> dengan moderator sosiolog humans yang jelas <unk> vidjongtius </s>
+pass1_best_wordseq: <s> dengan moderator sosiolog humans yang jelas <unk> vidjongtius </s>
+pass1_best_phonemeseq: sil | d @ ng a n | m o d @ r a t o r | s o s i o l o g | h u m a n s | y a ng | j @ l a s | sil | f i j o ng t i u s | sil
+pass1_best_score: -23593.859375
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 574 generated, 574 pushed, 51 nodes popped in 740
+sentence1: <s> dengan moderator sosiolog humans yang jelas vidjongtius </s>
+wseq1: <s> dengan moderator sosiolog humans yang jelas vidjongtius </s>
+phseq1: sil | d @ ng a n | m o d @ r a t o r | s o s i o l o g | h u m a n s | y a ng | j @ l a s | f i j o ng t i u s | sil
+cmscore1: 0.220 0.907 0.625 0.168 0.517 0.827 0.275 0.608 1.000
+score1: -23612.388672
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B003.wav
+STAT: 143026 samples (8.94 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> di janggi bunyi persib ini <euh> di ngimbang omong uber jalan ya sah </s>
+pass1_best_wordseq: <s> di janggi bunyi persib ini <euh> di ngimbang omong uber jalan ya sah </s>
+pass1_best_phonemeseq: sil | d i | j a ng g i | b u ny i | p @ r s i b | i n i | sil | d i | ng i m b a ng | o m o ng | u b @ r | j a l a n | y a | s a h | sil
+pass1_best_score: -27562.304688
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 6219 generated, 2596 pushed, 354 nodes popped in 892
+sentence1: <s> di janggi bunyi pers diri <euh> di ngimbang omong uber jalan ya sah </s>
+wseq1: <s> di janggi bunyi pers diri <euh> di ngimbang omong uber jalan ya sah </s>
+phseq1: sil | d i | j a ng g i | b u ny i | p @ r s | d i r i | sil | d i | ng i m b a ng | o m o ng | u b @ r | j a l a n | y a | s a h | sil
+cmscore1: 0.205 0.855 0.244 0.204 0.174 0.110 0.300 0.315 0.523 0.580 0.141 0.516 0.568 0.160 1.000
+score1: -27612.791016
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LBM187J007.wav
+STAT: 129112 samples (8.07 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> puji syukur <euh> kita panjatan <euh> kehadirat <euh> tuhan yang mahakuasa </s>
+pass1_best_wordseq: <s> puji syukur <euh> kita panjatan <euh> kehadirat <euh> tuhan yang mahakuasa </s>
+pass1_best_phonemeseq: sil | p u j i | sy u k u r | sil | k i t a | p a n j a t a n | sil | k @ h a d i r a t | sil | t u h a n | y a ng | m a h a k u a s a | sil
+pass1_best_score: -26155.460938
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 3014 generated, 2062 pushed, 194 nodes popped in 805
+sentence1: <s> puji syukur !SIL kita panjatkan <euh> kehadiran <euh> tuhan yang maha kuasa </s>
+wseq1: <s> puji syukur !SIL kita panjatkan <euh> kehadiran <euh> tuhan yang maha kuasa </s>
+phseq1: sil | p u j i | sy u k u r | sil | k i t a | p a n j a t k a n | sil | k @ h a d i r a n | sil | t u h a n | y a ng | m a h a | k u a s a | sil
+cmscore1: 0.159 0.840 0.349 0.111 0.642 0.271 0.148 0.191 0.149 0.993 1.000 0.892 0.100 1.000
+score1: -26177.292969
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LMM134F011.wav
+STAT: 148507 samples (9.28 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> kalau mega ini maw majuh maka harus membangun pendidikan dan rumah sakit kata ketua mpr lah di era vaci zukifli hasan </s>
+pass1_best_wordseq: <s> kalau mega ini maw majuh maka harus membangun pendidikan dan rumah sakit kata ketua mpr lah di era vaci zukifli hasan </s>
+pass1_best_phonemeseq: sil | k a l au | m e g a | i n i | m au | m a j u h | m a k a | h a r u s | m @ m b a ng u n | p @ n d i d i k a n | d a n | r u m a h | s a k i t | k a t a | k @ t u a | e m p e e r | l a h | d i | e r a | f a c i | z u k i f l i | h a s a n | sil
+pass1_best_score: -33420.257812
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 9176 generated, 3327 pushed, 520 nodes popped in 926
+sentence1: <s> kalau mega ini maw majuh maka harus membangun pendidikan dan rumah sakit kata ketua mpr lah di era vaci zukifli hasan </s>
+wseq1: <s> kalau mega ini maw majuh maka harus membangun pendidikan dan rumah sakit kata ketua mpr lah di era vaci zukifli hasan </s>
+phseq1: sil | k a l au | m e g a | i n i | m au | m a j u h | m a k a | h a r u s | m @ m b a ng u n | p @ n d i d i k a n | d a n | r u m a h | s a k i t | k a t a | k @ t u a | e m p e e r | l a h | d i | e r a | f a c i | z u k i f l i | h a s a n | sil
+cmscore1: 0.475 0.802 0.164 0.213 0.506 0.658 0.429 0.697 0.868 0.924 0.452 0.757 0.159 0.538 0.788 0.119 0.085 0.689 0.044 0.386 0.147 0.178 1.000
+score1: -33478.683594
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B023.wav
+STAT: 122486 samples (7.66 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> dikenang price al-bashri dan gigi sahabuddin <unk> perdebatan di yang glm </s>
+pass1_best_wordseq: <s> dikenang price al-bashri dan gigi sahabuddin <unk> perdebatan di yang glm </s>
+pass1_best_phonemeseq: sil | d i k @ n a ng | p r ai s | a l b a s r i | d a n | g i g i | s a h a b u d i n | sil | p @ r d @ b a t a n | d i | y a ng | g e e | sil
+pass1_best_score: -24783.257812
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 6993 generated, 2918 pushed, 361 nodes popped in 764
+sentence1: <s> terkenang price abas di dan gigi sahabuddin !SIL perdebatan di yang glm </s>
+wseq1: <s> terkenang price abas di dan gigi sahabuddin !SIL perdebatan di yang glm </s>
+phseq1: sil | t @ r k @ n a ng | p r ai s | a b a s | d i | d a n | g i g i | s a h a b u d i n | sil | p @ r d @ b a t a n | d i | y a ng | g e e | sil
+cmscore1: 0.150 0.214 0.523 0.400 0.229 0.624 0.153 0.292 0.083 0.108 0.469 0.190 0.134 1.000
+score1: -24830.458984
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C030.wav
+STAT: 90867 samples (5.68 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> p yang tangannya komisaris jenderal nugroho djayusman </s>
+pass1_best_wordseq: <s> p yang tangannya komisaris jenderal nugroho djayusman </s>
+pass1_best_phonemeseq: sil | p | y a ng | t a ng a n ny a | k o m i s a r i s | j e n d @ r a l | n u g r o h o | j a y u s m a n | sil
+pass1_best_score: -18253.515625
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 480 generated, 480 pushed, 32 nodes popped in 566
+sentence1: <s> diantaranya komisaris jendral nugroho djayusman </s>
+wseq1: <s> diantaranya komisaris jendral nugroho djayusman </s>
+phseq1: sil | d i a n t a r a ny a | k o m i s a r i s | j e n d r a l | n u g r o h o | j a y u s m a n | sil
+cmscore1: 0.271 0.099 0.925 0.519 0.633 0.052 1.000
+score1: -18270.031250
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LBM187J015.wav
+STAT: 142153 samples (8.88 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> kuasa sidang pertama <unk> tahun sidang <unk> duwa ribu limabelas <unk> duwa tibum amblas </s>
+pass1_best_wordseq: <s> kuasa sidang pertama <unk> tahun sidang <unk> duwa ribu limabelas <unk> duwa tibum amblas </s>
+pass1_best_phonemeseq: sil | k u a s a | s i d a ng | p @ r t a m a | sil | t a h u n | s i d a ng | sil | d u w a | r i b u | l i m a b @ l a s | sil | d u w a | t i b u m | a m b l a s | sil
+pass1_best_score: -29483.798828
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 4564 generated, 2487 pushed, 307 nodes popped in 886
+sentence1: <s> masa sidang pertama <euh> tahun sidang !SIL dua ribu limabelas !SIL dua ribu enam belas </s>
+wseq1: <s> masa sidang pertama <euh> tahun sidang !SIL dua ribu limabelas !SIL dua ribu enam belas </s>
+phseq1: sil | m a s a | s i d a ng | p @ r t a m a | sil | t a h u n | s i d a ng | sil | d u a | r i b u | l i m a b @ l a s | sil | d u a | r i b u | @ n a m | b e l a s | sil
+cmscore1: 0.276 0.291 0.866 0.429 0.143 0.864 0.744 0.168 0.436 0.310 0.435 0.151 0.651 0.159 0.415 0.164 1.000
+score1: -29521.810547
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C014.wav
+STAT: 75362 samples (4.71 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> desa cihideung membawahkan tiga kampung </s>
+pass1_best_wordseq: <s> desa cihideung membawahkan tiga kampung </s>
+pass1_best_phonemeseq: sil | d e s a | c i h i d @ ng | m @ m b a w a h k a n | t i g a | k a m p u ng | sil
+pass1_best_score: -15573.640625
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 616 generated, 615 pushed, 50 nodes popped in 469
+sentence1: <s> desa cihideung membawahkan tiga kampung </s>
+wseq1: <s> desa cihideung membawahkan tiga kampung </s>
+phseq1: sil | d e s a | c i h i d @ ng | m @ m b a w a h k a n | t i g a | k a m p u ng | sil
+cmscore1: 0.162 0.742 0.125 0.879 0.589 0.214 1.000
+score1: -15598.188477
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LMM134F014.wav
+STAT: 184900 samples (11.56 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> kpp mulleta ya dilantik menjadi anggota baru mpr adalah fit ifah dari faksi petai go kalah dari dapil kalimantan timur dan jelai dia uli </s>
+pass1_best_wordseq: <s> kpp mulleta ya dilantik menjadi anggota baru mpr adalah fit ifah dari faksi petai go kalah dari dapil kalimantan timur dan jelai dia uli </s>
+pass1_best_phonemeseq: sil | k a p | m u l l e t a | y a | d i l a n t i k | m @ n j a d i | a ng g o t a | b a r u | e m p e e r | a d a l a h | f i t | i f a h | d a r i | f a k s i | p @ t ai | g o | k a l a h | d a r i | d a p i l | k a l i m a n t a n | t i m u r | d a n | j @ l ai | d i a | u l i | sil
+pass1_best_score: -41539.312500
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 8637 generated, 4321 pushed, 554 nodes popped in 1154
+sentence1: <s> mereka yang dilantik menjadi anggota baru mpr adalah itifak dari fraksi partai go kalah dari dapil kalimantan tibo dan jelai dia uli </s>
+wseq1: <s> mereka yang dilantik menjadi anggota baru mpr adalah itifak dari fraksi partai go kalah dari dapil kalimantan tibo dan jelai dia uli </s>
+phseq1: sil | m @ r e k a | y a ng | d i l a n t i k | m @ n j a d i | a ng g o t a | b a r u | e m p e e r | a d a l a h | i t i f a k | d a r i | f r a k s i | p a r t ai | g o | k a l a h | d a r i | d a p i l | k a l i m a n t a n | t i b o | d a n | j @ l ai | d i a | u l i | sil
+cmscore1: 0.061 0.301 0.213 0.949 0.790 0.501 0.463 0.158 0.582 0.227 0.736 0.402 0.264 0.221 0.604 0.751 0.227 0.501 0.172 0.517 0.494 0.321 0.083 1.000
+score1: -41597.421875
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B025.wav
+STAT: 97431 samples (6.09 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> pesta merah di moning dari tim garang destruktif </s>
+pass1_best_wordseq: <s> pesta merah di moning dari tim garang destruktif </s>
+pass1_best_phonemeseq: sil | p e s t a | m @ r a h | d i | m o n i ng | d a r i | t i m | g a r a ng | d e s t r u k t i f | sil
+pass1_best_score: -18815.261719
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 2514 generated, 1012 pushed, 98 nodes popped in 607
+sentence1: <s> pesta muradi morning dari tindakan destruktif </s>
+wseq1: <s> pesta muradi morning dari tindakan destruktif </s>
+phseq1: sil | p e s t a | m u r a d i | m o r n i ng | d a r i | t i n d a k a n | d e s t r u k t i f | sil
+cmscore1: 0.197 0.298 0.167 0.284 0.285 0.446 0.594 1.000
+score1: -18828.232422
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D016.wav
+STAT: 54558 samples (3.41 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> pancasila sebagai dasar dan idiologi negara </s>
+pass1_best_wordseq: <s> pancasila sebagai dasar dan idiologi negara </s>
+pass1_best_phonemeseq: sil | p a n c a s i l a | s @ b a g ai | d a s a r | d a n | i d i o l o g i | n @ g a r a | sil
+pass1_best_score: -11349.894531
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 896 generated, 774 pushed, 54 nodes popped in 339
+sentence1: <s> pancasila sebagai dasar dan idiologi negara </s>
+wseq1: <s> pancasila sebagai dasar dan idiologi negara </s>
+phseq1: sil | p a n c a s i l a | s @ b a g ai | d a s a r | d a n | i d i o l o g i | n @ g a r a | sil
+cmscore1: 0.258 0.912 0.779 0.259 0.209 0.587 0.356 1.000
+score1: -11374.982422
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LMM134F010.wav
+STAT: 182709 samples (11.42 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> wakil presiden filsuf kalah meminta pemangku ketelitian untuk mengevaluasi pembeli yang helikopter kepresidenan <unk> produk agusta w selain </s>
+pass1_best_wordseq: <s> wakil presiden filsuf kalah meminta pemangku ketelitian untuk mengevaluasi pembeli yang helikopter kepresidenan <unk> produk agusta w selain </s>
+pass1_best_phonemeseq: sil | w a k i l | p r e s i d e n | f i l s u f | k a l a h | m @ m i n t a | p @ m a ng k u | k @ t @ l i t i a n | u n t u k | m @ ng e f a l u a s i | p @ m b @ l i | y a ng | h e l i k o p t @ r | k @ p r e s i d e n a n | sil | p r o d u k | a g u s t a | w e | s @ l ai n | sil
+pass1_best_score: -40904.160156
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 8696 generated, 4042 pushed, 489 nodes popped in 1140
+sentence1: <s> wakil pesiden filsuf kalah meminta pemangku ketelitian untuk mengevaluasi pembelian helikopter itu presiden and !SIL produk agusta w selain </s>
+wseq1: <s> wakil pesiden filsuf kalah meminta pemangku ketelitian untuk mengevaluasi pembelian helikopter itu presiden and !SIL produk agusta w selain </s>
+phseq1: sil | w a k i l | p @ s i d e n | f i l s u f | k a l a h | m @ m i n t a | p @ m a ng k u | k @ t @ l i t i a n | u n t u k | m @ ng e f a l u a s i | p @ m b @ l i a n | h e l i k o p t @ r | i t u | p r e s i d e n | a n d | sil | p r o d u k | a g u s t a | w e | s @ l ai n | sil
+cmscore1: 0.293 0.601 0.384 0.661 0.821 0.363 0.383 0.107 0.491 0.920 0.251 0.541 0.109 0.246 0.213 0.217 0.367 0.239 0.093 0.182 1.000
+score1: -40966.710938
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D008.wav
+STAT: 152517 samples (9.53 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> wakil ketua uterus masakah memberi sambutan dalam rakernas kata sitanggang bebas pt semakmur itu lima gaspi natasha sulawesi selatan </s>
+pass1_best_wordseq: <s> wakil ketua uterus masakah memberi sambutan dalam rakernas kata sitanggang bebas pt semakmur itu lima gaspi natasha sulawesi selatan </s>
+pass1_best_phonemeseq: sil | w a k i l | k @ t u a | u t e r u s | m a s a k a h | m @ m b @ r i | s a m b u t a n | d a l a m | r a k @ r n a s | k a t a | s i t a ng g a ng | b @ b a s | p e | s @ m a k m u r | i t u | l i m a | g a s p i | n a t a s a | s u l a w @ s i | s @ l a t a n | sil
+pass1_best_score: -33092.710938
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 10723 generated, 3849 pushed, 477 nodes popped in 951
+sentence1: <s> wakil ketua uterus masakah memberi sambutan dalam rakernas kata sitanggang bebas pt semakmur itu di mabes tidak asal sulawesi selatan </s>
+wseq1: <s> wakil ketua uterus masakah memberi sambutan dalam rakernas kata sitanggang bebas pt semakmur itu di mabes tidak asal sulawesi selatan </s>
+phseq1: sil | w a k i l | k @ t u a | u t e r u s | m a s a k a h | m @ m b @ r i | s a m b u t a n | d a l a m | r a k @ r n a s | k a t a | s i t a ng g a ng | b @ b a s | p e | s @ m a k m u r | i t u | d i | m a b e s | t i d a k | a s a l | s u l a w @ s i | s @ l a t a n | sil
+cmscore1: 0.281 0.543 0.359 0.447 0.273 0.909 0.818 0.304 0.517 0.407 0.204 0.212 0.153 0.157 0.564 0.531 0.108 0.149 0.112 0.931 0.063 1.000
+score1: -33144.375000
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B016.wav
+STAT: 117632 samples (7.35 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> botol seorang di bentoel idi <unk> dani begitu juga sadis dan amerika </s>
+pass1_best_wordseq: <s> botol seorang di bentoel idi <unk> dani begitu juga sadis dan amerika </s>
+pass1_best_phonemeseq: sil | b o t o l | s @ k o r a ng | d e i | b e n t o l | i d i | sil | d a n i | b e g i t u | j u g a | s a d i s | d a n | a m @ r i k a | sil
+pass1_best_score: -24451.587891
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 7474 generated, 2857 pushed, 305 nodes popped in 733
+sentence1: <s> botol seorang dari benoit !SIL dan identik unjuk rasa di dan amerika </s>
+wseq1: <s> botol seorang dari benoit !SIL dan identik unjuk rasa di dan amerika </s>
+phseq1: sil | b o t o l | s @ k o r a ng | d a r i | b e n o i t | sil | d a n | i d e n t i k | u n j u k | r a s a | d i | d a n | a m @ r i k a | sil
+cmscore1: 0.194 0.372 0.812 0.124 0.132 0.235 0.858 0.220 0.603 0.072 0.028 0.207 0.219 1.000
+score1: -24488.328125
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C004.wav
+STAT: 90344 samples (5.65 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> t demikian pernyataan davomas yang di bangkok </s>
+pass1_best_wordseq: <s> t demikian pernyataan davomas yang di bangkok </s>
+pass1_best_phonemeseq: sil | t | d @ m i k i a n | p @ r ny a t a a n | d a f o m a s | y a ng | d i | b a ng k o k | sil
+pass1_best_score: -17738.466797
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 2612 generated, 1166 pushed, 152 nodes popped in 563
+sentence1: <s> t demikian pernyataan davomas yang di bangkok </s>
+wseq1: <s> t demikian pernyataan davomas yang di bangkok </s>
+phseq1: sil | t | d @ m i k i a n | p @ r ny a t a a n | d a f o m a s | y a ng | d i | b a ng k o k | sil
+cmscore1: 0.133 0.707 0.713 0.452 0.168 0.304 0.776 0.082 1.000
+score1: -17765.039062
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B024.wav
+STAT: 118440 samples (7.40 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> ekonom sri mulyani gawat ini curigai iza ekonomi kalau meneror indera izin </s>
+pass1_best_wordseq: <s> ekonom sri mulyani gawat ini curigai iza ekonomi kalau meneror indera izin </s>
+pass1_best_phonemeseq: sil | e k o n o m | s r i | m u l y a n i | g a w a t | i n i | c u r i g ai | i z a | e k o n o m i | k a l au | m @ n e r o r | i n d e r a | i z i n | sil
+pass1_best_score: -24176.093750
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 4688 generated, 1901 pushed, 292 nodes popped in 738
+sentence1: <s> ekonom sri mulyani gawat ini curigai iza ekonomi kalau meneror indera izin !SIL </s>
+wseq1: <s> ekonom sri mulyani gawat ini curigai iza ekonomi kalau meneror indera izin !SIL </s>
+phseq1: sil | e k o n o m | s r i | m u l y a n i | g a w a t | i n i | c u r i g ai | i z a | e k o n o m i | k a l au | m @ n e r o r | i n d e r a | i z i n | sil | sil
+cmscore1: 0.211 0.734 0.586 0.586 0.193 0.244 0.539 0.214 0.711 0.405 0.384 0.252 0.406 0.116 1.000
+score1: -24231.246094
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D004.wav
+STAT: 173492 samples (10.84 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> petinju formatur itu adalah ilham habibie <euh> jimmy s idi <unk> cuti vi hasan <unk> pilu budi santoso <unk> muhammad oh !SIL pri soerdijanto <euh> para-para jasa </s>
+pass1_best_wordseq: <s> petinju formatur itu adalah ilham habibie <euh> jimmy s idi <unk> cuti vi hasan <unk> pilu budi santoso <unk> muhammad oh !SIL pri soerdijanto <euh> para-para jasa </s>
+pass1_best_phonemeseq: sil | p @ t i n j u | f o r m a t u r | i t u | a d a l a h | i l h a m | h a b i b i | sil | j i m i | e s | i d i | sil | c u t i | f i | h a s a n | sil | p i l u | b u d i | s a n t o s o | sil | m u h a m a d | o h | sil | p e e r i | s u r d i y a n t o | sil | p a r a p a r a | j a s a | sil
+pass1_best_score: -36918.734375
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 16032 generated, 5811 pushed, 614 nodes popped in 1082
+sentence1: <s> petinju formatur itu adalah ilham habibie <euh> jimmy si di <euh> cuti vi hasan <euh> pio budi santoso <unk> muhammad oh !SIL pri soerdijanto <euh> para-para jasa </s>
+wseq1: <s> petinju formatur itu adalah ilham habibie <euh> jimmy si di <euh> cuti vi hasan <euh> pio budi santoso <unk> muhammad oh !SIL pri soerdijanto <euh> para-para jasa </s>
+phseq1: sil | p @ t i n j u | f o r m a t u r | i t u | a d a l a h | i l h a m | h a b i b i | sil | j i m i | e s i | d i | sil | c u t i | f i | h a s a n | sil | p i o | b u d i | s a n t o s o | sil | m u h a m a d | o h | sil | p e e r i | s u r d i y a n t o | sil | p a r a p a r a | j a s a | sil
+cmscore1: 0.197 0.267 0.461 0.828 0.327 0.572 0.089 0.143 0.213 0.143 0.178 0.167 0.182 0.181 0.187 0.299 0.068 0.371 0.158 0.135 0.268 0.191 0.149 0.057 0.257 0.149 0.241 0.518 1.000
+score1: -36997.664062
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B010.wav
+STAT: 106290 samples (6.64 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> di walau menilai kendrik dan itu merupakan ujian sumber nu asean </s>
+pass1_best_wordseq: <s> di walau menilai kendrik dan itu merupakan ujian sumber nu asean </s>
+pass1_best_phonemeseq: sil | d i | w a l au | m @ n i l ai | k @ n d r i k | d a n | i t u | m @ r u p a k a n | u j i a n | s u m b @ r | n u | a s @ a n | sil
+pass1_best_score: -21178.828125
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 5981 generated, 2027 pushed, 309 nodes popped in 662
+sentence1: <s> di walau menilai kendrik dan ini merupakan ujian sumber nu asean </s>
+wseq1: <s> di walau menilai kendrik dan ini merupakan ujian sumber nu asean </s>
+phseq1: sil | d i | w a l au | m @ n i l ai | k @ n d r i k | d a n | i n i | m @ r u p a k a n | u j i a n | s u m b @ r | n u | a s @ a n | sil
+cmscore1: 0.207 0.863 0.187 0.898 0.344 0.360 0.152 0.268 0.144 0.465 0.234 0.136 1.000
+score1: -21210.542969
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LMM134F015.wav
+STAT: 67221 samples (4.20 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> potong ber pendapat bahwa narkoba dalam bahaya laten </s>
+pass1_best_wordseq: <s> potong ber pendapat bahwa narkoba dalam bahaya laten </s>
+pass1_best_phonemeseq: sil | p o t o ng | b @ r | p @ n d a p a t | b a h w a | n a r k o b a | d a l a m | b a h a y a | l a t e n | sil
+pass1_best_score: -14806.542969
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 1369 generated, 917 pushed, 62 nodes popped in 418
+sentence1: <s> potong ber pendapat bahwa narkoba dalam bahaya laten </s>
+wseq1: <s> potong ber pendapat bahwa narkoba dalam bahaya laten </s>
+phseq1: sil | p o t o ng | b @ r | p @ n d a p a t | b a h w a | n a r k o b a | d a l a m | b a h a y a | l a t e n | sil
+cmscore1: 0.294 0.225 0.173 0.458 0.754 0.561 0.597 0.983 0.121 1.000
+score1: -14836.226562
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LBM187J011.wav
+STAT: 120714 samples (7.54 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> pimpinan dan anggota <unk> dpr terapi yang tahu rumah </s>
+pass1_best_wordseq: <s> pimpinan dan anggota <unk> dpr terapi yang tahu rumah </s>
+pass1_best_phonemeseq: sil | p i m p i n a n | d a n | a ng g o t a | sil | d e p e e r | t e r a p i | y a ng | t a h u | r u m a h | sil
+pass1_best_score: -23456.964844
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 1634 generated, 992 pushed, 137 nodes popped in 752
+sentence1: <s> pimpinan dan anggota !SIL dpr terapi yang tahu rumah </s>
+wseq1: <s> pimpinan dan anggota !SIL dpr terapi yang tahu rumah </s>
+phseq1: sil | p i m p i n a n | d a n | a ng g o t a | sil | d e p e e r | t e r a p i | y a ng | t a h u | r u m a h | sil
+cmscore1: 0.214 0.974 0.901 0.735 0.115 0.743 0.202 0.564 0.213 0.120 1.000
+score1: -23473.162109
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D027.wav
+STAT: 71106 samples (4.44 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> pewayang kuli satya pidie libur warga kemur uang tuban </s>
+pass1_best_wordseq: <s> pewayang kuli satya pidie libur warga kemur uang tuban </s>
+pass1_best_phonemeseq: sil | p @ w a y a ng | k u l i | s a t y a | p i d i | l i b u r | w a r g a | k @ m u r | u a ng | t u b a n | sil
+pass1_best_score: -14823.194336
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 6312 generated, 2384 pushed, 272 nodes popped in 442
+sentence1: <s> pewayang kuli satya pidie libur warga kemur uang tuban </s>
+wseq1: <s> pewayang kuli satya pidie libur warga kemur uang tuban </s>
+phseq1: sil | p @ w a y a ng | k u l i | s a t y a | p i d i | l i b u r | w a r g a | k @ m u r | u a ng | t u b a n | sil
+cmscore1: 0.221 0.397 0.118 0.218 0.137 0.299 0.490 0.210 0.146 0.323 1.000
+score1: -14866.950195
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LBM187J014.wav
+STAT: 241195 samples (15.07 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> dengan mengucap <euh> bismillah y rohman <euh> tigor jim !SIL perkenankanlah kamis suatu pimpinan dewan !SIL pemuka apa paripurna <euh> dprp dari </s>
+pass1_best_wordseq: <s> dengan mengucap <euh> bismillah y rohman <euh> tigor jim !SIL perkenankanlah kamis suatu pimpinan dewan !SIL pemuka apa paripurna <euh> dprp dari </s>
+pass1_best_phonemeseq: sil | d @ ng a n | m @ ng u c a p | sil | b i s m i l l a h | y | r o h m a n | sil | t i g o r | j i m | sil | p @ r k @ n a n k a n l a h | k a m i s | s u a t u | p i m p i n a n | d e w a n | sil | p @ m u k a | a p a | p a r i p u r n a | sil | d e p e e r p e | d a r i | sil
+pass1_best_score: -50024.632812
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 7038 generated, 3390 pushed, 428 nodes popped in 1505
+sentence1: <s> dengan mengucap <euh> bismillah y rohman <euh> tirosin <euh> perkenankanlah kamis selaku pimpinan dewan <euh> membuka rapat paripurna <euh> dprp dari </s>
+wseq1: <s> dengan mengucap <euh> bismillah y rohman <euh> tirosin <euh> perkenankanlah kamis selaku pimpinan dewan <euh> membuka rapat paripurna <euh> dprp dari </s>
+phseq1: sil | d @ ng a n | m @ ng u c a p | sil | b i s m i l l a h | y | r o h m a n | sil | t i r o s i n | sil | p @ r k @ n a n k a n l a h | k a m i s | s @ l a k u | p i m p i n a n | d e w a n | sil | m @ m b u k a | r a p a t | p a r i p u r n a | sil | d e p e e r p e | d a r i | sil
+cmscore1: 0.210 0.532 0.280 0.147 0.715 0.184 0.424 0.148 0.133 0.167 0.689 0.645 0.578 0.894 0.554 0.151 0.291 0.600 0.951 0.148 0.155 0.131 1.000
+score1: -50068.410156
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D028.wav
+STAT: 96709 samples (6.04 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> pemikiran bung karno mkd ya nggak sebai sintesis tentara islam dana syamanisme </s>
+pass1_best_wordseq: <s> pemikiran bung karno mkd ya nggak sebai sintesis tentara islam dana syamanisme </s>
+pass1_best_phonemeseq: sil | p @ m i k i r a n | b u ng | k a r n o | m k d | y a | ng g a k | s @ b a i | s i n t @ s i s | t @ n t a r a | i s l a m | d a n a | sy a m a n i s m @ | sil
+pass1_best_score: -20209.962891
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 5846 generated, 2903 pushed, 346 nodes popped in 602
+sentence1: <s> pemikiran bung karung mkd ya nggak sebai sintesis tentara islam dan asean aris dan </s>
+wseq1: <s> pemikiran bung karung mkd ya nggak sebai sintesis tentara islam dan asean aris dan </s>
+phseq1: sil | p @ m i k i r a n | b u ng | k a r u ng | m k d | y a | ng g a k | s @ b a i | s i n t @ s i s | t @ n t a r a | i s l a m | d a n | a s @ a n | a r i s | d a n | sil
+cmscore1: 0.331 0.820 0.509 0.539 0.699 0.701 0.191 0.112 0.371 0.423 0.772 0.858 0.104 0.200 0.098 1.000
+score1: -20285.158203
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D019.wav
+STAT: 60038 samples (3.75 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> timika tunggal ika sebagai semboyan mereka </s>
+pass1_best_wordseq: <s> timika tunggal ika sebagai semboyan mereka </s>
+pass1_best_phonemeseq: sil | t i m i k a | t u ng g a l | i k a | s @ b a g ai | s @ m b o y a n | m e r @ k a | sil
+pass1_best_score: -12683.055664
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 3148 generated, 1190 pushed, 143 nodes popped in 373
+sentence1: <s> timika tunggal ika sebagai semboyan mereka </s>
+wseq1: <s> timika tunggal ika sebagai semboyan mereka </s>
+phseq1: sil | t i m i k a | t u ng g a l | i k a | s @ b a g ai | s @ m b o y a n | m e r @ k a | sil
+cmscore1: 0.223 0.101 0.712 0.064 0.447 0.200 0.125 1.000
+score1: -12708.298828
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D018.wav
+STAT: 52005 samples (3.25 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> pmkri sebagai bentuk negara </s>
+pass1_best_wordseq: <s> pmkri sebagai bentuk negara </s>
+pass1_best_phonemeseq: sil | p e e m k a e r i | s @ b a g ai | b e n t u k | n @ g a r a | sil
+pass1_best_score: -10603.369141
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 371 generated, 371 pushed, 17 nodes popped in 323
+sentence1: <s> pmkri sebagai bentuk negara </s>
+wseq1: <s> pmkri sebagai bentuk negara </s>
+phseq1: sil | p e e m k a e r i | s @ b a g ai | b e n t u k | n @ g a r a | sil
+cmscore1: 0.137 0.225 0.602 0.642 0.433 1.000
+score1: -10621.920898
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D001.wav
+STAT: 122905 samples (7.68 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> prof dr j iniasi ditepis badai kitong ikatan cd cronus ring tiga di syarat ruis di </s>
+pass1_best_wordseq: <s> prof dr j iniasi ditepis badai kitong ikatan cd cronus ring tiga di syarat ruis di </s>
+pass1_best_phonemeseq: sil | p r o f | d e e r | j | i n i a s i | d i t @ p i s | b a d ai | k i t o ng | i k a t a n | c i d i | c r o n u s | r i ng | t i g a | d i | sy a r a t | r u i s | d i | sil
+pass1_best_score: -25005.294922
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 9674 generated, 3654 pushed, 398 nodes popped in 766
+sentence1: <s> prof dr j iniasi ditepis badai kitong ikatan cd cronus ring tiga di syarat risk di </s>
+wseq1: <s> prof dr j iniasi ditepis badai kitong ikatan cd cronus ring tiga di syarat risk di </s>
+phseq1: sil | p r o f | d e e r | j | i n i a s i | d i t @ p i s | b a d ai | k i t o ng | i k a t a n | c i d i | c r o n u s | r i ng | t i g a | d i | sy a r a t | r i s | d i | sil
+cmscore1: 0.270 0.907 0.127 0.387 0.318 0.330 0.144 0.398 0.291 0.324 0.225 0.283 0.105 0.256 0.592 0.078 0.342 1.000
+score1: -25059.128906
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C024.wav
+STAT: 64110 samples (4.01 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> tisu dikirim law wynne kuasa </s>
+pass1_best_wordseq: <s> tisu dikirim law wynne kuasa </s>
+pass1_best_phonemeseq: sil | t i s u | d i k i r i m | l au | w ai n | k u a s a | sil
+pass1_best_score: -12380.971680
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 2291 generated, 1195 pushed, 114 nodes popped in 399
+sentence1: <s> tisu dikirim lawai kuasa </s>
+wseq1: <s> tisu dikirim lawai kuasa </s>
+phseq1: sil | t i s u | d i k i r i m | l a w ai | k u a s a | sil
+cmscore1: 0.231 0.203 0.569 0.153 0.280 1.000
+score1: -12407.097656
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D009.wav
+STAT: 134389 samples (8.40 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> dikatakan oesman sapta bahwa sapi disuruh masyarakat kepakai itu pegawai negeri !SIL papua tak oki dan tni bukukan rumah </s>
+pass1_best_wordseq: <s> dikatakan oesman sapta bahwa sapi disuruh masyarakat kepakai itu pegawai negeri !SIL papua tak oki dan tni bukukan rumah </s>
+pass1_best_phonemeseq: sil | d i k a t a k a n | u s m a n | s a p t a | b a h w a | s a p i | d i s u r u h | m a sy a r a k a t | k @ p a k ai | i t u | p @ g a w ai | n @ g r i | sil | p a p u a | t a k | o k i | d a n | t e e n i | b u k u k a n | r u m a h | sil
+pass1_best_score: -28909.490234
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 9889 generated, 3440 pushed, 419 nodes popped in 838
+sentence1: <s> dikatakan oesman sapta bahwa sapi disuruh masyarakat terpakai itu pegawai negeri <euh> kabur pak oki dan tni bukukan rumah </s>
+wseq1: <s> dikatakan oesman sapta bahwa sapi disuruh masyarakat terpakai itu pegawai negeri <euh> kabur pak oki dan tni bukukan rumah </s>
+phseq1: sil | d i k a t a k a n | u s m a n | s a p t a | b a h w a | s a p i | d i s u r u h | m a sy a r a k a t | t @ r p a k ai | i t u | p @ g a w ai | n @ g r i | sil | k a b u r | p a k | o k i | d a n | t e e n i | b u k u k a n | r u m a h | sil
+cmscore1: 0.312 0.896 0.463 0.239 0.524 0.100 0.163 0.493 0.363 0.777 0.952 0.103 0.148 0.065 0.088 0.120 0.336 0.177 0.344 0.243 1.000
+score1: -28976.076172
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D015.wav
+STAT: 94589 samples (5.91 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> tentara dari melakukan gerakan sosialisasi empat irama dan prri </s>
+pass1_best_wordseq: <s> tentara dari melakukan gerakan sosialisasi empat irama dan prri </s>
+pass1_best_phonemeseq: sil | t @ n t a r a | d a r i | m @ l a k u k a n | g @ r a k a n | s o s i a l i s a s i | @ m p a t | i r a m a | d a n | p e e r e r i | sil
+pass1_best_score: -19522.443359
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 6295 generated, 2428 pushed, 253 nodes popped in 589
+sentence1: <s> tentara dari melakukan gerakan sosialisasi empat irama dan prri </s>
+wseq1: <s> tentara dari melakukan gerakan sosialisasi empat irama dan prri </s>
+phseq1: sil | t @ n t a r a | d a r i | m @ l a k u k a n | g @ r a k a n | s o s i a l i s a s i | @ m p a t | i r a m a | d a n | p e e r e r i | sil
+cmscore1: 0.183 0.322 0.107 0.705 0.385 0.582 0.617 0.102 0.049 0.178 1.000
+score1: -19556.494141
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D007.wav
+STAT: 106772 samples (6.67 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> dengan di cikini cas bj muda islam yang rahmatan ilham itu jadi model pergi di dana negara line </s>
+pass1_best_wordseq: <s> dengan di cikini cas bj muda islam yang rahmatan ilham itu jadi model pergi di dana negara line </s>
+pass1_best_phonemeseq: sil | d @ ng a n | d i | c i k i n i | c a s | b @ j @ | m u d a | i s l a m | y a ng | r a h m a t a n | i l h a m | i t u | j a d i | m o d e l | p @ r g i | d i | d a n a | n @ g a r a | l ai n | sil
+pass1_best_score: -23604.183594
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 11589 generated, 4340 pushed, 495 nodes popped in 665
+sentence1: <s> dengan di cikini cas bagi muda islam yang roma-panggilan itu jadi model pergi di dana negara line </s>
+wseq1: <s> dengan di cikini cas bagi muda islam yang roma-panggilan itu jadi model pergi di dana negara line </s>
+phseq1: sil | d @ ng a n | d i | c i k i n i | c a s | b a g i | m u d a | i s l a m | y a ng | r o m a p a ng g i l a n | i t u | j a d i | m o d e l | p @ r g i | d i | d a n a | n @ g a r a | l ai n | sil
+cmscore1: 0.257 0.449 0.347 0.086 0.310 0.072 0.314 0.235 0.638 0.250 0.181 0.366 0.397 0.161 0.189 0.147 0.116 0.274 1.000
+score1: -23662.882812
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B012.wav
+STAT: 132595 samples (8.29 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> ditemukan di geneva sertu roy irawan <unk> tiga nilani <euh> jan sebelas tadi </s>
+pass1_best_wordseq: <s> ditemukan di geneva sertu roy irawan <unk> tiga nilani <euh> jan sebelas tadi </s>
+pass1_best_phonemeseq: sil | d i t @ m u k a n | d e i | g e n e f a | s @ r t u | r oi | i r a w a n | sil | t i g a | n i l a n i | sil | j a n | s @ b @ l a s | t a d i | sil
+pass1_best_score: -26044.089844
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 3602 generated, 1695 pushed, 196 nodes popped in 827
+sentence1: <s> ditemukannya jenazah sertu roy irawan !SIL tiga ini lanny <unk> jam sebelas tadi </s>
+wseq1: <s> ditemukannya jenazah sertu roy irawan !SIL tiga ini lanny <unk> jam sebelas tadi </s>
+phseq1: sil | d i t @ m u k a n ny a | j @ n a z a h | s @ r t u | r oi | i r a w a n | sil | t i g a | i n i | l a n i | sil | j a m | s @ b @ l a s | t a d i | sil
+cmscore1: 0.200 0.360 0.426 0.513 0.964 0.575 0.120 0.232 0.440 0.061 0.108 0.315 0.234 0.175 1.000
+score1: -26055.390625
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C022.wav
+STAT: 76736 samples (4.80 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> pi sepanjang blora hingga bojonegoro </s>
+pass1_best_wordseq: <s> pi sepanjang blora hingga bojonegoro </s>
+pass1_best_phonemeseq: sil | p i | s @ p a n j a ng | b l o r a | h i ng g a | b o j o n e g o r o | sil
+pass1_best_score: -14925.334961
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 127 generated, 127 pushed, 12 nodes popped in 478
+sentence1: <s> di sepanjang blora hingga bojonegoro </s>
+wseq1: <s> di sepanjang blora hingga bojonegoro </s>
+phseq1: sil | d i | s @ p a n j a ng | b l o r a | h i ng g a | b o j o n e g o r o | sil
+cmscore1: 0.295 0.194 0.761 0.737 1.000 0.696 1.000
+score1: -14946.576172
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D003.wav
+STAT: 92462 samples (5.78 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> pemilihan tekong dilakukan sarang syawal bukaka <unk> yang teratur justru matori yang terpilih </s>
+pass1_best_wordseq: <s> pemilihan tekong dilakukan sarang syawal bukaka <unk> yang teratur justru matori yang terpilih </s>
+pass1_best_phonemeseq: sil | p @ m i l i h a n | t e k o ng | d i l a k u k a n | s a r a ng | sy a w a l | b u k a k a | sil | y a ng | t @ r a t u r | j u s t r u | m a t o r i | y a ng | t @ r p i l i h | sil
+pass1_best_score: -19777.603516
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 8234 generated, 2993 pushed, 334 nodes popped in 576
+sentence1: <s> pemilihan tekong dilakukan sarang syawal bukaka <euh> yang teratur justru matori yang terpilih </s>
+wseq1: <s> pemilihan tekong dilakukan sarang syawal bukaka <euh> yang teratur justru matori yang terpilih </s>
+phseq1: sil | p @ m i l i h a n | t e k o ng | d i l a k u k a n | s a r a ng | sy a w a l | b u k a k a | sil | y a ng | t @ r a t u r | j u s t r u | m a t o r i | y a ng | t @ r p i l i h | sil
+cmscore1: 0.322 0.365 0.253 0.534 0.109 0.194 0.120 0.132 0.416 0.225 0.188 0.163 0.184 0.338 1.000
+score1: -19824.167969
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C005.wav
+STAT: 76496 samples (4.78 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> dengan alasan pln sedang pailit </s>
+pass1_best_wordseq: <s> dengan alasan pln sedang pailit </s>
+pass1_best_phonemeseq: sil | d @ ng a n | a l a s a n | p e e l e n | s @ d a ng | p ai l i t | sil
+pass1_best_score: -14890.607422
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 299 generated, 299 pushed, 22 nodes popped in 476
+sentence1: <s> dengan alasan pln sedang pailit </s>
+wseq1: <s> dengan alasan pln sedang pailit </s>
+phseq1: sil | d @ ng a n | a l a s a n | p e e l e n | s @ d a ng | p ai l i t | sil
+cmscore1: 0.300 0.938 0.469 0.698 0.907 0.107 1.000
+score1: -14907.936523
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C018.wav
+STAT: 93158 samples (5.82 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> pt levy adil arfan front juga terjadi kerusuhan </s>
+pass1_best_wordseq: <s> pt levy adil arfan front juga terjadi kerusuhan </s>
+pass1_best_phonemeseq: sil | p e | l e f i | a d i l | a r f a n | f r o n t | j u g a | t @ r j a d i | k @ r u s u h a n | sil
+pass1_best_score: -19287.699219
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 3222 generated, 1492 pushed, 146 nodes popped in 580
+sentence1: <s> pt levy adil arfan front juga terjadi kerusuhan </s>
+wseq1: <s> pt levy adil arfan front juga terjadi kerusuhan </s>
+phseq1: sil | p e | l e f i | a d i l | a r f a n | f r o n t | j u g a | t @ r j a d i | k @ r u s u h a n | sil
+cmscore1: 0.220 0.121 0.212 0.371 0.178 0.192 0.673 0.924 0.387 1.000
+score1: -19321.052734
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C015.wav
+STAT: 118289 samples (7.39 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> di ulang desember tidak ada ya ya pemakaian pang </s>
+pass1_best_wordseq: <s> di ulang desember tidak ada ya ya pemakaian pang </s>
+pass1_best_phonemeseq: sil | d i | u l a ng | d e s e m b @ r | t i d a k | a d a | y a | y a | p @ m a k ai a n | p a ng | sil
+pass1_best_score: -23360.115234
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 419 generated, 419 pushed, 34 nodes popped in 737
+sentence1: <s> di bulan desember tidak ada biaya pemakaian pan </s>
+wseq1: <s> di bulan desember tidak ada biaya pemakaian pan </s>
+phseq1: sil | d i | b u l a n | d e s e m b @ r | t i d a k | a d a | b i a y a | p @ m a k ai a n | p a n | sil
+cmscore1: 0.240 0.729 0.389 0.362 0.785 0.533 0.245 0.694 0.201 1.000
+score1: -23369.537109
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B009.wav
+STAT: 111494 samples (6.97 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> dinilai zein dtd sidenya mengejar jabatan erwan </s>
+pass1_best_wordseq: <s> dinilai zein dtd sidenya mengejar jabatan erwan </s>
+pass1_best_phonemeseq: sil | d i n i l ai | z e i n | d e t e d e | s i d @ ny a | m @ ng @ j a r | j a b a t a n | e r w a n | sil
+pass1_best_score: -21931.812500
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 4669 generated, 1998 pushed, 256 nodes popped in 695
+sentence1: <s> dinilai zein dcd nasi dengan mengejar jabatan dan wang </s>
+wseq1: <s> dinilai zein dcd nasi dengan mengejar jabatan dan wang </s>
+phseq1: sil | d i n i l ai | z e i n | d e c e d e | n a s i | d @ ng a n | m @ ng @ j a r | j a b a t a n | d a n | w a ng | sil
+cmscore1: 0.149 0.708 0.221 0.122 0.095 0.123 0.650 0.343 0.150 0.162 1.000
+score1: -21971.033203
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D011.wav
+STAT: 193576 samples (12.10 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> panglima tni jendral <unk> kata menguman tiup mengungkapkan pada masa lalu ada krajan desak semisal tanah seperti sini jaya dan majapahit <euh> demen tajam itu punah </s>
+pass1_best_wordseq: <s> panglima tni jendral <unk> kata menguman tiup mengungkapkan pada masa lalu ada krajan desak semisal tanah seperti sini jaya dan majapahit <euh> demen tajam itu punah </s>
+pass1_best_phonemeseq: sil | p a ng l i m a | t e e n i | j e n d r a l | sil | k a t a | m @ ng u m a n | t i u p | m @ ng u ng k a p k a n | p a d a | m a s a | l a l u | a d a | k r a j a n | d @ s a k | s @ m i s a l | t a n a h | s @ p @ r t i | s i n i | j a y a | d a n | m a j a p a h i t | sil | d @ m @ n | t a j a m | i t u | p u n a h | sil
+pass1_best_score: -40977.214844
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 15076 generated, 5581 pushed, 650 nodes popped in 1208
+sentence1: <s> panglima tni jendral !SIL kata menguman tiup mengungkapkan pada masa lalu ada krajan pesat semisal tanah seperti sini jaya dan majapahit <euh> dengan tajam itu punah </s>
+wseq1: <s> panglima tni jendral !SIL kata menguman tiup mengungkapkan pada masa lalu ada krajan pesat semisal tanah seperti sini jaya dan majapahit <euh> dengan tajam itu punah </s>
+phseq1: sil | p a ng l i m a | t e e n i | j e n d r a l | sil | k a t a | m @ ng u m a n | t i u p | m @ ng u ng k a p k a n | p a d a | m a s a | l a l u | a d a | k r a j a n | p @ s a t | s @ m i s a l | t a n a h | s @ p @ r t i | s i n i | j a y a | d a n | m a j a p a h i t | sil | d @ ng a n | t a j a m | i t u | p u n a h | sil
+cmscore1: 0.292 0.917 0.524 0.236 0.120 0.190 0.142 0.194 0.733 0.873 0.788 0.987 0.357 0.131 0.249 0.421 0.091 0.716 0.174 0.310 0.315 0.340 0.142 0.207 0.085 0.700 0.257 1.000
+score1: -41041.027344
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D026.wav
+STAT: 178392 samples (11.15 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> ketua mpr tzu chi firasat di ruang kerjanya gedung santana tiga komplain <euh> kedutaan pt <unk> penerima duta bisa ceko tutut inggrisnya <euh> pitah opk </s>
+pass1_best_wordseq: <s> ketua mpr tzu chi firasat di ruang kerjanya gedung santana tiga komplain <euh> kedutaan pt <unk> penerima duta bisa ceko tutut inggrisnya <euh> pitah opk </s>
+pass1_best_phonemeseq: sil | k @ t u a | e m p e e r | z u | c i | f i r a s a t | d i | r u a ng | k @ r j a ny a | g @ d u ng | s a n t a n a | t i g a | k o m p l ai n | sil | k @ d u t a a n | p e t e | sil | p @ n @ r i m a | d u t a | b i s a | c e k o | t u t u t | i ng g r i s ny a | sil | p i t a h | o p e | sil
+pass1_best_score: -38678.191406
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 12485 generated, 5238 pushed, 592 nodes popped in 1113
+sentence1: <s> ketua mpr tzu tv hasan !SIL di ruang kerjanya gedung santana tiga komplain <euh> pidum tanpa dan <euh> penerima duta bisa ceko tutut inggrisnya <euh> kita hp </s>
+wseq1: <s> ketua mpr tzu tv hasan !SIL di ruang kerjanya gedung santana tiga komplain <euh> pidum tanpa dan <euh> penerima duta bisa ceko tutut inggrisnya <euh> kita hp </s>
+phseq1: sil | k @ t u a | e m p e e r | z u | t i f i | h a s a n | sil | d i | r u a ng | k @ r j a ny a | g @ d u ng | s a n t a n a | t i g a | k o m p l ai n | sil | p i d u m | t a n p a | d a n | sil | p @ n @ r i m a | d u t a | b i s a | c e k o | t u t u t | i ng g r i s ny a | sil | k i t a | h a p e | sil
+cmscore1: 0.541 0.729 0.154 0.218 0.090 0.278 0.125 0.712 0.403 0.365 0.641 0.166 0.497 0.196 0.132 0.176 0.253 0.083 0.454 0.651 0.421 0.254 0.509 0.141 0.140 0.156 0.106 0.048 1.000
+score1: -38731.710938
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LMM134F007.wav
+STAT: 130424 samples (8.15 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> pimpinan ntt lah <euh> teti <unk> tutut secara !SIL kashmir kodong tempat ia nta di bengkulu </s>
+pass1_best_wordseq: <s> pimpinan ntt lah <euh> teti <unk> tutut secara !SIL kashmir kodong tempat ia nta di bengkulu </s>
+pass1_best_phonemeseq: sil | p i m p i n a n | e n t e t e | l a h | sil | t e t i | sil | t u t u t | s @ c a r a | sil | k a s m i r | k o d o ng | t @ m p a t | i a | e n t e a | d i | b e ng k u l u | sil
+pass1_best_score: -28785.828125
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 9690 generated, 3478 pushed, 394 nodes popped in 813
+sentence1: <s> pimpinan ntt lah <euh> teti <unk> tutut secara !SIL kashmir kodong tempat ia nta di bengkulu </s>
+wseq1: <s> pimpinan ntt lah <euh> teti <unk> tutut secara !SIL kashmir kodong tempat ia nta di bengkulu </s>
+phseq1: sil | p i m p i n a n | e n t e t e | l a h | sil | t e t i | sil | t u t u t | s @ c a r a | sil | k a s m i r | k o d o ng | t @ m p a t | i a | e n t e a | d i | b e ng k u l u | sil
+cmscore1: 0.467 0.276 0.255 0.299 0.158 0.204 0.097 0.236 0.614 0.137 0.167 0.117 0.538 0.082 0.135 0.647 1.000 1.000
+score1: -28839.113281
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LMM134F004.wav
+STAT: 101866 samples (6.37 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> pada awal dua ribu mangga sh persyarakat ekonomi atom ya haz yan pulai belaku </s>
+pass1_best_wordseq: <s> pada awal dua ribu mangga sh persyarakat ekonomi atom ya haz yan pulai belaku </s>
+pass1_best_phonemeseq: sil | p a d a | a w a l | d u a | r i b u | m a ng g a | s h | p @ r sy a r a k a t | e k o n o m i | a t o m | y a | h a s | y a n | p u l ai | b @ l a k u | sil
+pass1_best_score: -22849.681641
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 5689 generated, 2707 pushed, 319 nodes popped in 635
+sentence1: <s> pada awal dua ribu mangga sh persyarakat ekonomi atom ya haz yan pulai ber laku </s>
+wseq1: <s> pada awal dua ribu mangga sh persyarakat ekonomi atom ya haz yan pulai ber laku </s>
+phseq1: sil | p a d a | a w a l | d u a | r i b u | m a ng g a | s h | p @ r sy a r a k a t | e k o n o m i | a t o m | y a | h a s | y a n | p u l ai | b @ r | l a k u | sil
+cmscore1: 0.289 0.920 0.519 0.428 0.309 0.203 0.578 0.431 0.391 0.209 0.289 0.207 0.184 0.326 0.227 0.208 1.000
+score1: -22902.937500
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B008.wav
+STAT: 146545 samples (9.16 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> dinilai endin di yang larsen digranat ini <euh> pencuri dan masa-masa bangsa </s>
+pass1_best_wordseq: <s> dinilai endin di yang larsen digranat ini <euh> pencuri dan masa-masa bangsa </s>
+pass1_best_phonemeseq: sil | d i n i l ai | e n d i n | d e i | y a ng | l a r s @ n | d i g r a n a t | i n i | sil | p @ n c u r i | d a n | m a s a m a s a | b a ng s a | sil
+pass1_best_score: -28520.460938
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 7372 generated, 2509 pushed, 335 nodes popped in 914
+sentence1: <s> dinilai di pt di yang warsidi granat ini <euh> pencundang masa-masa bangsa </s>
+wseq1: <s> dinilai di pt di yang warsidi granat ini <euh> pencundang masa-masa bangsa </s>
+phseq1: sil | d i n i l ai | d i | p e | d i | y a ng | w a r s i d i | g r a n a t | i n i | sil | p @ n c u n d a ng | m a s a m a s a | b a ng s a | sil
+cmscore1: 0.133 0.366 0.162 0.239 0.056 0.966 0.459 0.306 0.319 0.332 0.069 0.297 0.464 1.000
+score1: -28552.738281
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D010.wav
+STAT: 121597 samples (7.60 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> ketua papasi edi yang fo mengatakan pengembang rumah yang demang di aris asinya mencapai empat ribu pengusaha </s>
+pass1_best_wordseq: <s> ketua papasi edi yang fo mengatakan pengembang rumah yang demang di aris asinya mencapai empat ribu pengusaha </s>
+pass1_best_phonemeseq: sil | k @ t u a | p a p a s i | e d i | y a ng | e f o | m @ ng a t a k a n | p @ ng @ m b a ng | r u m a h | y a ng | d @ m a ng | d i | a r i s | a s i ny a | m @ n c a p ai | @ m p a t | r i b u | p @ ng u s a h a | sil
+pass1_best_score: -25843.101562
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 8763 generated, 3416 pushed, 406 nodes popped in 758
+sentence1: <s> ketua papasi edi yang fo mengatakan pengembang rumah yang demang di aris asi nya mencapai empat ribu pengusaha </s>
+wseq1: <s> ketua papasi edi yang fo mengatakan pengembang rumah yang demang di aris asi nya mencapai empat ribu pengusaha </s>
+phseq1: sil | k @ t u a | p a p a s i | e d i | y a ng | e f o | m @ ng a t a k a n | p @ ng @ m b a ng | r u m a h | y a ng | d @ m a ng | d i | a r i s | a s i | ny a | m @ n c a p ai | @ m p a t | r i b u | p @ ng u s a h a | sil
+cmscore1: 0.399 0.525 0.258 0.139 0.158 0.244 0.616 0.450 0.222 0.389 0.349 0.452 0.238 0.179 0.160 0.958 0.904 0.449 0.882 1.000
+score1: -25902.417969
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C011.wav
+STAT: 86956 samples (5.43 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> dengan sekema ini denmark kecewa </s>
+pass1_best_wordseq: <s> dengan sekema ini denmark kecewa </s>
+pass1_best_phonemeseq: sil | d @ ng a n | s @ k e m a | i n i | d e n m a r k | k @ c e w a | sil
+pass1_best_score: -16603.513672
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 667 generated, 632 pushed, 35 nodes popped in 541
+sentence1: <s> dengan sekema ini denmark kecewa </s>
+wseq1: <s> dengan sekema ini denmark kecewa </s>
+phseq1: sil | d @ ng a n | s @ k e m a | i n i | d e n m a r k | k @ c e w a | sil
+cmscore1: 0.234 0.653 0.328 0.210 0.532 0.428 1.000
+score1: -16628.035156
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C007.wav
+STAT: 121783 samples (7.61 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> dengan bujuk urainya yang anisah yang brasil membawanya ke danau sunter </s>
+pass1_best_wordseq: <s> dengan bujuk urainya yang anisah yang brasil membawanya ke danau sunter </s>
+pass1_best_phonemeseq: sil | d @ ng a n | b u j u k | u r ai ny a | y a ng | a n i s a h | y a ng | b r a s i l | m @ m b a w a ny a | k @ | d a n au | s u n t @ r | sil
+pass1_best_score: -24536.250000
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 2663 generated, 1246 pushed, 217 nodes popped in 759
+sentence1: <s> dengan bujuk urainya yang anisah yang brasil membawanya ke danau sunter </s>
+wseq1: <s> dengan bujuk urainya yang anisah yang brasil membawanya ke danau sunter </s>
+phseq1: sil | d @ ng a n | b u j u k | u r ai ny a | y a ng | a n i s a h | y a ng | b r a s i l | m @ m b a w a ny a | k @ | d a n au | s u n t @ r | sil
+cmscore1: 0.151 0.675 0.339 0.423 0.875 0.608 0.541 0.537 0.912 0.604 0.920 0.067 1.000
+score1: -24569.283203
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B017.wav
+STAT: 154808 samples (9.68 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> dua benny barang diperkencang e-gov wanita ngemis yang yang brankar di jalan !SIL kyai mayjen </s>
+pass1_best_wordseq: <s> dua benny barang diperkencang e-gov wanita ngemis yang yang brankar di jalan !SIL kyai mayjen </s>
+pass1_best_phonemeseq: sil | d u a | b @ n i | b a r a ng | d i p @ r k @ n c a ng | i g o f | w a n i t a | ng @ m i s | y a ng | y a ng | b r a ng k a r | d i | j a l a n | sil | k i y a i | m ai j e n | sil
+pass1_best_score: -30853.876953
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 7475 generated, 3490 pushed, 401 nodes popped in 966
+sentence1: <s> dua benny barang di pekerja nikolov wanita ngemis yang yang brankar di jalan <unk> kyai mayjen </s>
+wseq1: <s> dua benny barang di pekerja nikolov wanita ngemis yang yang brankar di jalan <unk> kyai mayjen </s>
+phseq1: sil | d u a | b @ n i | b a r a ng | d i | p @ k @ r j a | n i k o l o f | w a n i t a | ng @ m i s | y a ng | y a ng | b r a ng k a r | d i | j a l a n | sil | k i y a i | m ai j e n | sil
+cmscore1: 0.228 0.142 0.113 0.112 0.054 0.474 0.284 0.939 0.293 0.497 0.632 0.116 0.368 0.283 0.097 0.364 0.416 1.000
+score1: -30911.765625
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LBM187J003.wav
+STAT: 120220 samples (7.51 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> pasal lama like ump. warohmatulohi khutaba apapun </s>
+pass1_best_wordseq: <s> pasal lama like ump. warohmatulohi khutaba apapun </s>
+pass1_best_phonemeseq: sil | p a s a l | l a m a | l ai k | u m p | w a r o h m a t u l o h i | kh u t a b a | a p a p u n | sil
+pass1_best_score: -24259.031250
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 4542 generated, 2060 pushed, 217 nodes popped in 749
+sentence1: <s> pasal lama like ump. warohmatulohi khutaba apapun </s>
+wseq1: <s> pasal lama like ump. warohmatulohi khutaba apapun </s>
+phseq1: sil | p a s a l | l a m a | l ai k | u m p | w a r o h m a t u l o h i | kh u t a b a | a p a p u n | sil
+cmscore1: 0.221 0.290 0.128 0.625 0.151 0.604 0.203 0.150 1.000
+score1: -24295.222656
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LBM187J008.wav
+STAT: 273670 samples (17.10 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> karena papa selamat dan karunia-nya <euh> it pamasi diberi kesempatan !SIL dan kekuatan <euh> untuk melanjutkan upaya <unk> dan pengabdian cita <unk> kepada bangsa dan negara tercinta </s>
+pass1_best_wordseq: <s> karena papa selamat dan karunia-nya <euh> it pamasi diberi kesempatan !SIL dan kekuatan <euh> untuk melanjutkan upaya <unk> dan pengabdian cita <unk> kepada bangsa dan negara tercinta </s>
+pass1_best_phonemeseq: sil | k a r @ n a | p a p a | s @ l a m a t | d a n | k a r u n i a ny a | sil | c i | p a m a s i | d i b @ r i | k @ s @ m p a t a n | sil | d a n | k @ k u a t a n | sil | u n t u k | m @ l a n j u t k a n | u p a y a | sil | d a n | p @ ng a b d i a n | c i t a | sil | k @ p a d a | b a ng s a | d a n | n @ g a r a | t @ r c i n t a | sil
+pass1_best_score: -57289.867188
+### Recognition: 2nd pass (RL heuristic best-first)
+WARNING: 00 _default: hypothesis stack exhausted, terminate search now
+STAT: 00 _default: 0 sentences have been found
+WARNING: 00 _default: got no candidates, search failed
+STAT: 00 _default: 5640 generated, 2911 pushed, 434 nodes popped in 1708
+<search failed>
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C020.wav
+STAT: 94594 samples (5.91 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> dimana digalang pesawat antaralain dipandu oleh kadar </s>
+pass1_best_wordseq: <s> dimana digalang pesawat antaralain dipandu oleh kadar </s>
+pass1_best_phonemeseq: sil | d i m a n a | d i g a l a ng | p @ s a w a t | a n t a r a l ai n | d i p a n d u | o l e h | k a d a r | sil
+pass1_best_score: -19347.769531
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 2216 generated, 1166 pushed, 170 nodes popped in 589
+sentence1: <s> dimana digalang pesawat antaralain dipandu oleh kadar </s>
+wseq1: <s> dimana digalang pesawat antaralain dipandu oleh kadar </s>
+phseq1: sil | d i m a n a | d i g a l a ng | p @ s a w a t | a n t a r a l ai n | d i p a n d u | o l e h | k a d a r | sil
+cmscore1: 0.206 0.515 0.463 0.405 0.311 0.465 0.431 0.189 1.000
+score1: -19379.812500
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B007.wav
+STAT: 70261 samples (4.39 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> dimana mantan perpanganan </s>
+pass1_best_wordseq: <s> dimana mantan perpanganan </s>
+pass1_best_phonemeseq: sil | d i m a n a | m a n t a n | p @ r p a ng a n a n | sil
+pass1_best_score: -13132.414062
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 1138 generated, 841 pushed, 50 nodes popped in 437
+sentence1: <s> dimana mantan perpanganan </s>
+wseq1: <s> dimana mantan perpanganan </s>
+phseq1: sil | d i m a n a | m a n t a n | p @ r p a ng a n a n | sil
+cmscore1: 0.245 0.489 0.107 0.247 1.000
+score1: -13151.987305
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B001.wav
+STAT: 101379 samples (6.34 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> diakui lani !SIL dyer menyenderkan bukti yang sangat wah </s>
+pass1_best_wordseq: <s> diakui lani !SIL dyer menyenderkan bukti yang sangat wah </s>
+pass1_best_phonemeseq: sil | d i a k u i | l a n i | sil | d y @ r | m @ ny @ n d @ r k a n | b u k t i | y a ng | s a ng a t | w a h | sil
+pass1_best_score: -19255.796875
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 2206 generated, 1266 pushed, 103 nodes popped in 632
+sentence1: <s> diakui lagi <euh> dia menyodorkan bukti yang sangat kuat </s>
+wseq1: <s> diakui lagi <euh> dia menyodorkan bukti yang sangat kuat </s>
+phseq1: sil | d i a k u i | l a g i | sil | d i a | m @ ny o d o r k a n | b u k t i | y a ng | s a ng a t | k u a t | sil
+cmscore1: 0.312 0.357 0.134 0.160 0.216 0.249 0.194 0.924 0.615 0.034 1.000
+score1: -19274.349609
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D023.wav
+STAT: 74280 samples (4.64 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> mochi damau para pandawa mengikuti kiriman sic resah </s>
+pass1_best_wordseq: <s> mochi damau para pandawa mengikuti kiriman sic resah </s>
+pass1_best_phonemeseq: sil | m o c i | d a m au | p a r a | p a n d a w a | m @ ng i k u t i | k i r i m a n | s i k | r @ s a h | sil
+pass1_best_score: -15200.115234
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 4006 generated, 2124 pushed, 224 nodes popped in 462
+sentence1: <s> mochi damau para pandawa mengikuti kirim ancic resah </s>
+wseq1: <s> mochi damau para pandawa mengikuti kirim ancic resah </s>
+phseq1: sil | m o c i | d a m au | p a r a | p a n d a w a | m @ ng i k u t i | k i r i m | a n s i k | r @ s a h | sil
+cmscore1: 0.181 0.163 0.933 0.462 0.291 0.828 0.127 0.109 0.110 1.000
+score1: -15242.388672
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LMM134F002.wav
+STAT: 131571 samples (8.22 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> k.g.b. ihsg merupakan garis b sakato sistem perencanaan <euh> pembangunan esye lah </s>
+pass1_best_wordseq: <s> k.g.b. ihsg merupakan garis b sakato sistem perencanaan <euh> pembangunan esye lah </s>
+pass1_best_phonemeseq: sil | k g b | i h a e | m @ r u p a k a n | g a r i s | b | s a k a t o | s i s t @ m | p @ r @ n c a n a a n | sil | p @ m b a ng u n a n | @ sy @ | l a h | sil
+pass1_best_score: -27068.648438
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 4316 generated, 2102 pushed, 257 nodes popped in 820
+sentence1: <s> k.g.b. ihsg merupakan garis b sakato sistem perencanaan pembangunan esye lah </s>
+wseq1: <s> k.g.b. ihsg merupakan garis b sakato sistem perencanaan pembangunan esye lah </s>
+phseq1: sil | k g b | i h a e | m @ r u p a k a n | g a r i s | b | s a k a t o | s i s t @ m | p @ r @ n c a n a a n | p @ m b a ng u n a n | @ sy @ | l a h | sil
+cmscore1: 0.145 0.374 0.274 0.993 0.560 0.273 0.145 0.858 0.151 0.516 0.458 0.177 1.000
+score1: -27106.583984
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D012.wav
+STAT: 182315 samples (11.39 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> diungkapkan negara-negara di kawasan equator seperti indonesia h.p. avita tengah !SIL tanah !SIL pasir !SIL dalai sepertinya memiliki masa pangab yang panjang dan subur </s>
+pass1_best_wordseq: <s> diungkapkan negara-negara di kawasan equator seperti indonesia h.p. avita tengah !SIL tanah !SIL pasir !SIL dalai sepertinya memiliki masa pangab yang panjang dan subur </s>
+pass1_best_phonemeseq: sil | d i k u ng k a p k a | n @ g a r a n @ g a r a | d i | k a w a s a n | @ q u a t o r | s @ p @ r t i | i n d o n e s i a | h p | a f i t a | t @ ng a h | sil | t a n a h | sil | p a s i r | sil | d a l ai | s @ p @ r t i ny a | m @ m i l i k i | m a s a | p a ng a b | y a ng | p a n j a ng | d a n | s u b u r | sil
+pass1_best_score: -38547.179688
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 10652 generated, 4099 pushed, 548 nodes popped in 1137
+sentence1: <s> diungkapkan negara negara di kawasan equator seperti indonesia ketika tengah <unk> tanah <unk> pasir !SIL dalai sepertinya memiliki masa tanam yang panjang dan subur </s>
+wseq1: <s> diungkapkan negara negara di kawasan equator seperti indonesia ketika tengah <unk> tanah <unk> pasir !SIL dalai sepertinya memiliki masa tanam yang panjang dan subur </s>
+phseq1: sil | d i k u ng k a p k a | n @ g a r a | n @ g a r a | d i | k a w a s a n | @ q u a t o r | s @ p @ r t i | i n d o n e s i a | k @ t i k a | t @ ng a h | sil | t a n a h | sil | p a s i r | sil | d a l ai | s @ p @ r t i ny a | m @ m i l i k i | m a s a | t a n a m | y a ng | p a n j a ng | d a n | s u b u r | sil
+cmscore1: 0.412 0.166 0.783 0.284 0.768 0.345 0.935 0.850 0.515 0.184 0.561 0.116 0.451 0.104 0.555 0.082 0.409 0.239 0.637 0.907 0.075 0.408 0.785 0.527 0.368 1.000
+score1: -38604.160156
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C009.wav
+STAT: 100406 samples (6.28 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> dengan manajemen baru tubanan yang komprehensif gagal dilakukan </s>
+pass1_best_wordseq: <s> dengan manajemen baru tubanan yang komprehensif gagal dilakukan </s>
+pass1_best_phonemeseq: sil | d @ ng a n | m a n a j @ m e n | b a r u | t u b a n a n | y a ng | k o m p r e h e n s i f | g a g a l | d i l a k u k a n | sil
+pass1_best_score: -20442.103516
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 1406 generated, 995 pushed, 131 nodes popped in 626
+sentence1: <s> dengan manajemen baru tubanan yang komprehensif gagal dilakukan </s>
+wseq1: <s> dengan manajemen baru tubanan yang komprehensif gagal dilakukan </s>
+phseq1: sil | d @ ng a n | m a n a j @ m e n | b a r u | t u b a n a n | y a ng | k o m p r e h e n s i f | g a g a l | d i l a k u k a n | sil
+cmscore1: 0.230 0.679 0.878 0.478 0.116 1.000 0.574 0.225 0.397 1.000
+score1: -20468.951172
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LBM187J002.wav
+STAT: 117825 samples (7.36 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> kantor <unk> carlie syakduf <euh> di paris diserang <euh> papa id da </s>
+pass1_best_wordseq: <s> kantor <unk> carlie syakduf <euh> di paris diserang <euh> papa id da </s>
+pass1_best_phonemeseq: sil | k a n t o r | sil | c a r l i | sy a k d u f | sil | d i | p a r i s | d i s @ r a ng | sil | p a p a | ai | d a | sil
+pass1_best_score: -23234.046875
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 6013 generated, 3145 pushed, 365 nodes popped in 734
+sentence1: <s> kantor <unk> carli syakduf <euh> di paris diserang <euh> papa id dan </s>
+wseq1: <s> kantor <unk> carli syakduf <euh> di paris diserang <euh> papa id dan </s>
+phseq1: sil | k a n t o r | sil | c a r l i | sy a k d u f | sil | d i | p a r i s | d i s @ r a ng | sil | p a p a | ai | d a n | sil
+cmscore1: 0.210 0.905 0.099 0.235 0.260 0.140 0.887 0.505 0.550 0.179 0.230 0.395 0.074 1.000
+score1: -23280.255859
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D022.wav
+STAT: 106551 samples (6.66 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> bahkan cikeas gas dibekuk warisi dengan para dewa putu menggandakan rencana semar </s>
+pass1_best_wordseq: <s> bahkan cikeas gas dibekuk warisi dengan para dewa putu menggandakan rencana semar </s>
+pass1_best_phonemeseq: sil | b a h k a n | c i k e a s | g a s | d i b @ k u k | w a r i s i | d @ ng a n | p a r a | d e w a | p u t u | m @ ng g a n d a k a n | r @ n c a n a | s @ m a r | sil
+pass1_best_score: -22794.902344
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 5251 generated, 2338 pushed, 327 nodes popped in 664
+sentence1: <s> bahkan sis gas di berkoalisi dengan para dewa putu menggagalkan rencana sumbar </s>
+wseq1: <s> bahkan sis gas di berkoalisi dengan para dewa putu menggagalkan rencana sumbar </s>
+phseq1: sil | b a h k a n | e s i e s | g a s | d i | b e r k o a l i s i | d @ ng a n | p a r a | d e w a | p u t u | m @ ng g a g a l k a n | r @ n c a n a | s u m b a r | sil
+cmscore1: 0.303 1.000 0.214 0.340 0.114 0.510 0.514 0.581 0.710 0.306 0.458 0.864 0.103 1.000
+score1: -22833.181641
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LBM187J013.wav
+STAT: 90947 samples (5.68 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> dengan demikian <euh> kuorum toh pecat paket </s>
+pass1_best_wordseq: <s> dengan demikian <euh> kuorum toh pecat paket </s>
+pass1_best_phonemeseq: sil | d @ ng a n | d @ m i k i a n | sil | k u o r u m | t o h | p @ c a t | p a k e t | sil
+pass1_best_score: -18644.925781
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 2018 generated, 1035 pushed, 109 nodes popped in 566
+sentence1: <s> dengan demikian <euh> kuorum toh pecat paket </s>
+wseq1: <s> dengan demikian <euh> kuorum toh pecat paket </s>
+phseq1: sil | d @ ng a n | d @ m i k i a n | sil | k u o r u m | t o h | p @ c a t | p a k e t | sil
+cmscore1: 0.582 0.653 0.376 0.148 0.382 0.351 0.169 0.107 1.000
+score1: -18661.605469
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B028.wav
+STAT: 86866 samples (5.43 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> yang zaman mengirimkan langkah bank </s>
+pass1_best_wordseq: <s> yang zaman mengirimkan langkah bank </s>
+pass1_best_phonemeseq: sil | y a ng | z a m a n | m @ ng i r i m k a n | l a ng k a h | b a ng | sil
+pass1_best_score: -16546.517578
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 1346 generated, 925 pushed, 62 nodes popped in 541
+sentence1: <s> di zaman mengirimkan langkah baru </s>
+wseq1: <s> di zaman mengirimkan langkah baru </s>
+phseq1: sil | d e i | z a m a n | m @ ng i r i m k a n | l a ng k a h | b a r u | sil
+cmscore1: 0.243 0.081 0.193 0.099 0.738 0.089 1.000
+score1: -16557.154297
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B014.wav
+STAT: 104779 samples (6.55 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> jatuh van orang pekerja baru panik easy sistem indoor masin </s>
+pass1_best_wordseq: <s> jatuh van orang pekerja baru panik easy sistem indoor masin </s>
+pass1_best_phonemeseq: sil | j a t u h | f a n | o r a ng | p @ k @ r j a | b a r u | p a n i k | i z i | s i s t @ m | i n d o r | m a s i n | sil
+pass1_best_score: -21145.824219
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 6204 generated, 2347 pushed, 257 nodes popped in 653
+sentence1: <s> jatuh van orang pekerja baru tadi gizi sistem inter masih </s>
+wseq1: <s> jatuh van orang pekerja baru tadi gizi sistem inter masih </s>
+phseq1: sil | j a t u h | f a n | o r a ng | p @ k @ r j a | b a r u | t a d i | g i z i | s i s t @ m | i n t @ r | m a s i h | sil
+cmscore1: 0.131 0.191 0.126 0.172 0.495 0.258 0.071 0.199 0.348 0.244 0.151 1.000
+score1: -21188.951172
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C003.wav
+STAT: 78631 samples (4.91 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> demi yang mungkin bawang para keminting asean </s>
+pass1_best_wordseq: <s> demi yang mungkin bawang para keminting asean </s>
+pass1_best_phonemeseq: sil | d @ m i | y a ng | m u ng k i n | b a w a ng | p a r a | k @ m i n t i ng | a s @ a n | sil
+pass1_best_score: -15960.078125
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 3743 generated, 1542 pushed, 179 nodes popped in 489
+sentence1: <s> demi yang mungkin bawang para keminting asean </s>
+wseq1: <s> demi yang mungkin bawang para keminting asean </s>
+phseq1: sil | d @ m i | y a ng | m u ng k i n | b a w a ng | p a r a | k @ m i n t i ng | a s @ a n | sil
+cmscore1: 0.193 0.170 0.751 0.066 0.423 0.277 0.431 0.242 1.000
+score1: -15991.120117
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D025.wav
+STAT: 83705 samples (5.23 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> kisah smart pembangun kahyangan pada sebab untuk kedu kasim orang </s>
+pass1_best_wordseq: <s> kisah smart pembangun kahyangan pada sebab untuk kedu kasim orang </s>
+pass1_best_phonemeseq: sil | k i s a h | s @ m a r @ t | p @ m b a ng u n | k a h y a ng a n | p a d a | s @ b a b | u n t u k | k @ d u | k a s i m | o r a ng | sil
+pass1_best_score: -17959.894531
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 6706 generated, 3230 pushed, 302 nodes popped in 521
+sentence1: <s> kisah smart pembangun kahyangan pada la sebab untuk kedu kasim orang </s>
+wseq1: <s> kisah smart pembangun kahyangan pada la sebab untuk kedu kasim orang </s>
+phseq1: sil | k i s a h | s @ m a r @ t | p @ m b a ng u n | k a h y a ng a n | p a d a | l a | s @ b a b | u n t u k | k @ d u | k a s i m | o r a ng | sil
+cmscore1: 0.375 0.099 0.129 0.225 0.590 0.230 0.129 0.575 0.344 0.206 0.187 0.312 1.000
+score1: -18008.447266
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D029.wav
+STAT: 115185 samples (7.20 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> bung karno dikenal wa sebagai seorang pemikir dan pidie lop bangsa dengan pemikiran yang sangat komprehensif </s>
+pass1_best_wordseq: <s> bung karno dikenal wa sebagai seorang pemikir dan pidie lop bangsa dengan pemikiran yang sangat komprehensif </s>
+pass1_best_phonemeseq: sil | b u ng | k a r n o | d i k @ n a l | w a | s @ b a g ai | s @ o r a ng | p @ m i k i r | d a n | p i d i | l o p | b a ng s a | d @ ng a n | p @ m i k i r a n | y a ng | s a ng a t | k o m p r e h e n s i f | sil
+pass1_best_score: -24536.679688
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 7399 generated, 2850 pushed, 354 nodes popped in 718
+sentence1: <s> bung karno dikenal war sebagai seorang pemikir dan pidie loop bangsa dengan pemikiran yang sangat komprehensif </s>
+wseq1: <s> bung karno dikenal war sebagai seorang pemikir dan pidie loop bangsa dengan pemikiran yang sangat komprehensif </s>
+phseq1: sil | b u ng | k a r n o | d i k @ n a l | w a r | s @ b a g ai | s @ o r a ng | p @ m i k i r | d a n | p i d i | l o o p | b a ng s a | d @ ng a n | p @ m i k i r a n | y a ng | s a ng a t | k o m p r e h e n s i f | sil
+cmscore1: 0.199 0.904 0.353 0.330 0.133 0.441 0.409 0.369 0.114 0.160 0.046 0.665 0.455 0.458 0.795 0.313 0.219 1.000
+score1: -24586.302734
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LMM134F012.wav
+STAT: 105279 samples (6.58 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> peresmian pafi lembek lp susilo walid itu karawaci dilakukan minggu lalu </s>
+pass1_best_wordseq: <s> peresmian pafi lembek lp susilo walid itu karawaci dilakukan minggu lalu </s>
+pass1_best_phonemeseq: sil | p @ r @ s m i a n | p a f i | l @ m b e k | e l p e | s u s i l o | w a l i d | i t u | k a r a w a c i | d i l a k u k a n | m i ng g u | l a l u | sil
+pass1_best_score: -23548.957031
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 5161 generated, 2234 pushed, 204 nodes popped in 656
+sentence1: <s> peresmian pavi lembek lp susilo wangiku karawaci dilakukan minggu lalu </s>
+wseq1: <s> peresmian pavi lembek lp susilo wangiku karawaci dilakukan minggu lalu </s>
+phseq1: sil | p @ r @ s m i a n | p a f i | l @ m b e k | e l p e | s u s i l o | w a ng i k u | k a r a w a c i | d i l a k u k a n | m i ng g u | l a l u | sil
+cmscore1: 0.231 0.654 0.099 0.392 0.111 0.379 0.116 0.932 0.882 0.744 1.000 1.000
+score1: -23585.275391
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B002.wav
+STAT: 115760 samples (7.24 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> di yang long punya rizieq klaim yang dinyan yang tiga gen dilakukan </s>
+pass1_best_wordseq: <s> di yang long punya rizieq klaim yang dinyan yang tiga gen dilakukan </s>
+pass1_best_phonemeseq: sil | d i | y a ng | l o ng | p u ny a | r i z i q | k l ai m | y a ng | d i ny a n | y a ng | t i g a | g e n | d i l a k u k a n | sil
+pass1_best_score: -23085.869141
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 6071 generated, 2716 pushed, 344 nodes popped in 722
+sentence1: <s> di yang long punya rizieq klaim yang dinyan yang tiga gen dilakukan </s>
+wseq1: <s> di yang long punya rizieq klaim yang dinyan yang tiga gen dilakukan </s>
+phseq1: sil | d i | y a ng | l o ng | p u ny a | r i z i q | k l ai m | y a ng | d i ny a n | y a ng | t i g a | g e n | d i l a k u k a n | sil
+cmscore1: 0.231 0.276 0.225 0.110 0.348 0.397 0.122 0.368 0.234 0.543 0.488 0.093 0.171 1.000
+score1: -23130.562500
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C026.wav
+STAT: 101950 samples (6.37 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> di yang berkunjung ke gudang uia dan gereja wycombe nek akan glenn </s>
+pass1_best_wordseq: <s> di yang berkunjung ke gudang uia dan gereja wycombe nek akan glenn </s>
+pass1_best_phonemeseq: sil | d i | y a ng | b e r k u n j u ng | k @ | g u d a ng | u i a | d a n | g @ r e j a | w ai k o m b e | n e k | a k a n | g l e n | sil
+pass1_best_score: -21172.925781
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 3468 generated, 2129 pushed, 239 nodes popped in 635
+sentence1: <s> di yang berkunjung ke gudang uia dan gereja wycombe niatan glenn </s>
+wseq1: <s> di yang berkunjung ke gudang uia dan gereja wycombe niatan glenn </s>
+phseq1: sil | d i | y a ng | b e r k u n j u ng | k @ | g u d a ng | u i a | d a n | g @ r e j a | w ai k o m b e | n i a t a n | g l e n | sil
+cmscore1: 0.199 0.348 0.513 0.750 0.544 0.775 0.131 0.340 1.000 0.831 0.126 0.164 1.000
+score1: -21212.636719
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D017.wav
+STAT: 106926 samples (6.68 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> keweden erry <unk> tahun seribu suaraku sempat lima sebagai ke situ siregar </s>
+pass1_best_wordseq: <s> keweden erry <unk> tahun seribu suaraku sempat lima sebagai ke situ siregar </s>
+pass1_best_phonemeseq: sil | k @ w @ d e n | e r i | sil | t a h u n | s @ r i b u | s u a r a k u | s @ m p a t | l i m a | s @ b a g ai | k @ | s i t u | s i r @ g a r | sil
+pass1_best_score: -22161.615234
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 5585 generated, 2854 pushed, 254 nodes popped in 666
+sentence1: <s> keweden erry !SIL tahun seribu saat e sempat u lima sebagai ke situ siregar </s>
+wseq1: <s> keweden erry !SIL tahun seribu saat e sempat u lima sebagai ke situ siregar </s>
+phseq1: sil | k @ w @ d e n | e r i | sil | t a h u n | s @ r i b u | s a a t | @ | s @ m p a t | u | l i m a | s @ b a g ai | k @ | s i t u | s i r @ g a r | sil
+cmscore1: 0.146 0.351 0.131 0.113 0.436 0.583 0.113 0.118 0.584 0.229 0.445 0.289 0.666 0.188 0.278 1.000
+score1: -22212.933594
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B022.wav
+STAT: 65555 samples (4.10 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> pt !SIL pah qnjv ada di </s>
+pass1_best_wordseq: <s> pt !SIL pah qnjv ada di </s>
+pass1_best_phonemeseq: sil | p e | sil | p a h | k i e n j e f e | a d a | d e i | sil
+pass1_best_score: -12563.350586
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 5987 generated, 1684 pushed, 167 nodes popped in 408
+sentence1: <s> pt <unk> pah qnjv ada di </s>
+wseq1: <s> pt <unk> pah qnjv ada di </s>
+phseq1: sil | p e | sil | p a h | k i e n j e f e | a d a | d e i | sil
+cmscore1: 0.269 0.115 0.052 0.227 0.118 0.078 0.216 1.000
+score1: -12586.918945
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LBM187J004.wav
+STAT: 75472 samples (4.72 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> t salam sejahtera mh bagi kita </s>
+pass1_best_wordseq: <s> t salam sejahtera mh bagi kita </s>
+pass1_best_phonemeseq: sil | t | s a l a m | s @ j a h t @ r a | m h | b a g i | k i t a | sil
+pass1_best_score: -14536.882812
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 1035 generated, 836 pushed, 113 nodes popped in 470
+sentence1: <s> t salam sejahtera mh bagi kita </s>
+wseq1: <s> t salam sejahtera mh bagi kita </s>
+phseq1: sil | t | s a l a m | s @ j a h t @ r a | m h | b a g i | k i t a | sil
+cmscore1: 0.130 0.525 0.603 0.906 0.222 0.780 0.298 1.000
+score1: -14563.428711
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LMM134F008.wav
+STAT: 169273 samples (10.58 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> kepala kesbangpol kabupaten !SIL kegelapan ya humanika htmengatakan kejapan seselai sashimi untuk menumbuhkan rasa nasonal islah </s>
+pass1_best_wordseq: <s> kepala kesbangpol kabupaten !SIL kegelapan ya humanika htmengatakan kejapan seselai sashimi untuk menumbuhkan rasa nasonal islah </s>
+pass1_best_phonemeseq: sil | k @ p a l a | k @ s b a ng p o l | k a b u p a t e n | sil | k @ g @ l a p a n | y a | h u m a n i k a | h t m @ ng a t a k a n | k @ j a p a n | s @ s @ l ai | s a s i m i | u n t u k | m @ n u m b u h k a n | r a s a | n a s o n a l | i s l a h | sil
+pass1_best_score: -37965.621094
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 8866 generated, 3669 pushed, 454 nodes popped in 1056
+sentence1: <s> kepala kesbangpol kabupaten !SIL kegelapan ya humanika htmengatakan kegiatan sosialisasi ini untuk menumbuhkan rasa nasonal islah </s>
+wseq1: <s> kepala kesbangpol kabupaten !SIL kegelapan ya humanika htmengatakan kegiatan sosialisasi ini untuk menumbuhkan rasa nasonal islah </s>
+phseq1: sil | k @ p a l a | k @ s b a ng p o l | k a b u p a t e n | sil | k @ g @ l a p a n | y a | h u m a n i k a | h t m @ ng a t a k a n | k @ g i a t a n | s o s i a l i s a s i | i n i | u n t u k | m @ n u m b u h k a n | r a s a | n a s o n a l | i s l a h | sil
+cmscore1: 0.252 0.478 0.380 0.936 0.097 0.143 0.265 0.519 0.790 0.167 0.760 0.095 0.788 0.564 0.238 0.183 0.158 1.000
+score1: -38029.851562
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C025.wav
+STAT: 96343 samples (6.02 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> di inc. eko delapan anggota saja yang jago bm wynne bola </s>
+pass1_best_wordseq: <s> di inc. eko delapan anggota saja yang jago bm wynne bola </s>
+pass1_best_phonemeseq: sil | d i | i n c | e k o | d @ l a p a n | a ng g o t a | s a j a | y a ng | j a g o | b @ @ m | w ai n | b o l a | sil
+pass1_best_score: -19432.974609
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 4703 generated, 1924 pushed, 282 nodes popped in 600
+sentence1: <s> di inc. eko delapan anggota saja yang jago bermain bola </s>
+wseq1: <s> di inc. eko delapan anggota saja yang jago bermain bola </s>
+phseq1: sil | d i | i n c | e k o | d @ l a p a n | a ng g o t a | s a j a | y a ng | j a g o | b e r m a i n | b o l a | sil
+cmscore1: 0.223 0.315 0.175 0.429 0.367 0.880 0.638 0.681 0.572 0.273 0.108 1.000
+score1: -19467.984375
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C006.wav
+STAT: 103697 samples (6.48 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> dengan bukau berupa peralatan kedutaan seberat mangku imbang </s>
+pass1_best_wordseq: <s> dengan bukau berupa peralatan kedutaan seberat mangku imbang </s>
+pass1_best_phonemeseq: sil | d @ ng a n | b u k au | b e r u p a | p @ r a l a t a n | k @ d u t a a n | s @ b @ r a t | m a ng k u | i m b a ng | sil
+pass1_best_score: -21508.345703
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 3085 generated, 1287 pushed, 161 nodes popped in 646
+sentence1: <s> dengan bukau berupa peralatan kedokteran seberat mangku indah </s>
+wseq1: <s> dengan bukau berupa peralatan kedokteran seberat mangku indah </s>
+phseq1: sil | d @ ng a n | b u k au | b e r u p a | p @ r a l a t a n | k @ d o k t @ r a n | s @ b @ r a t | m a ng k u | i n d a h | sil
+cmscore1: 0.202 0.832 0.556 0.486 0.701 0.191 0.175 0.549 0.110 1.000
+score1: -21535.505859
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B019.wav
+STAT: 111039 samples (6.94 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> dokumen yme <unk> terbesar terhadap tiga ujar emir qatar </s>
+pass1_best_wordseq: <s> dokumen yme <unk> terbesar terhadap tiga ujar emir qatar </s>
+pass1_best_phonemeseq: sil | d o k u m e n | y e e m e | sil | t @ r b @ s a r | t @ r h a d a p | t i g a | u j a r | e m i r | k a t a r | sil
+pass1_best_score: -22286.755859
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 3490 generated, 1586 pushed, 178 nodes popped in 692
+sentence1: <s> dokumen yme <unk> terbesar terhadap tiga ujar emir qatar </s>
+wseq1: <s> dokumen yme <unk> terbesar terhadap tiga ujar emir qatar </s>
+phseq1: sil | d o k u m e n | y e e m e | sil | t @ r b @ s a r | t @ r h a d a p | t i g a | u j a r | e m i r | k a t a r | sil
+cmscore1: 0.205 0.138 0.123 0.252 0.934 0.073 0.161 0.829 0.747 0.062 1.000
+score1: -22316.771484
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B026.wav
+STAT: 142711 samples (8.92 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> di gkbi !SIL kongkow-kongkow pi ciganjur zenggi mendengarkan koleksi ngasih <euh> terbangai </s>
+pass1_best_wordseq: <s> di gkbi !SIL kongkow-kongkow pi ciganjur zenggi mendengarkan koleksi ngasih <euh> terbangai </s>
+pass1_best_phonemeseq: sil | d e i | g e k a b e i | sil | k o ng k o w k o ng k o w | p i | c i g a n j u r | z @ ng g i | m @ n d @ ng a r k a n | k o l e k s i | ng a s i h | sil | t @ r b a ng ai | sil
+pass1_best_score: -28805.246094
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 9994 generated, 3468 pushed, 365 nodes popped in 890
+sentence1: <s> tni gkbi <unk> kongkow-kongkow <euh> di ciganjur sambil mendengarkan koleksi ngasih !SIL terbang </s>
+wseq1: <s> tni gkbi <unk> kongkow-kongkow <euh> di ciganjur sambil mendengarkan koleksi ngasih !SIL terbang </s>
+phseq1: sil | t e e n i | g e k a b e i | sil | k o ng k o w k o ng k o w | sil | d i | c i g a n j u r | s a m b i l | m @ n d @ ng a r k a n | k o l e k s i | ng a s i h | sil | t @ r b a ng | sil
+cmscore1: 0.208 0.108 0.404 0.099 0.495 0.132 0.169 0.599 0.196 0.106 0.199 0.117 0.164 0.182 1.000
+score1: -28852.142578
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D020.wav
+STAT: 118273 samples (7.39 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> di tanah mulai lidya ketua sis usia dan budaya sangat ini terutama koperasi budaya mulai iud jawa </s>
+pass1_best_wordseq: <s> di tanah mulai lidya ketua sis usia dan budaya sangat ini terutama koperasi budaya mulai iud jawa </s>
+pass1_best_phonemeseq: sil | d i | t a n a h | m u l ai | l i d i a | k @ t u a | s i s | u s i a | d a n | b u d a y a | s a ng a t | i n i | t @ r u t a m a | k o p @ r a s i | b u d a y a | m u l ai | i u d e | j a w a | sil
+pass1_best_score: -25269.384766
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 7706 generated, 2582 pushed, 370 nodes popped in 737
+sentence1: <s> ditanam lain ini aku terasi sosial dan budaya sangat tinggi terutama kuperasi budaya melayu di jawa </s>
+wseq1: <s> ditanam lain ini aku terasi sosial dan budaya sangat tinggi terutama kuperasi budaya melayu di jawa </s>
+phseq1: sil | d i t a n a m | l a i n | i n i | a k u | t @ r a s i | s o s i a l | d a n | b u d a y a | s a ng a t | t i ng g i | t @ r u t a m a | k u p @ r a s i | b u d a y a | m @ l a y u | d e i | j a w a | sil
+cmscore1: 0.166 0.396 0.170 0.109 0.201 0.199 0.317 0.645 0.829 0.261 0.188 0.513 0.275 0.908 0.232 0.230 0.162 1.000
+score1: -25309.591797
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B029.wav
+STAT: 98356 samples (6.15 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> elza salip mengakui kalau puma sidik m.ridwan </s>
+pass1_best_wordseq: <s> elza salip mengakui kalau puma sidik m.ridwan </s>
+pass1_best_phonemeseq: sil | e l z a | s a l i p | m @ ng a k u i | k a l au | p u m a | s i d i k | m r i d w a n | sil
+pass1_best_score: -19599.472656
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 3083 generated, 1418 pushed, 172 nodes popped in 613
+sentence1: <s> elza saleh mengakui kalaupun masing ridwan </s>
+wseq1: <s> elza saleh mengakui kalaupun masing ridwan </s>
+phseq1: sil | e l z a | s a l e h | m @ ng a k u i | k a l au p u n | m a s i ng | r i d w a n | sil
+cmscore1: 0.262 0.610 0.114 0.166 0.371 0.323 0.156 1.000
+score1: -19627.537109
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B018.wav
+STAT: 111316 samples (6.96 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> dufan tentang dibuka seperti ya senyam ujar nirwono </s>
+pass1_best_wordseq: <s> dufan tentang dibuka seperti ya senyam ujar nirwono </s>
+pass1_best_phonemeseq: sil | d u f a n | t @ n t a ng | d i b u k a | s @ p @ r t i | y a | s @ ny a m | u j a r | n i r w o n o | sil
+pass1_best_score: -21946.255859
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 3378 generated, 1444 pushed, 215 nodes popped in 694
+sentence1: <s> dufan tetap dibuka seperti ya sun yang ujar nirwono </s>
+wseq1: <s> dufan tetap dibuka seperti ya sun yang ujar nirwono </s>
+phseq1: sil | d u f a n | t @ t a p | d i b u k a | s @ p @ r t i | y a | s a n | y a ng | u j a r | n i r w o n o | sil
+cmscore1: 0.140 0.741 0.220 0.260 0.654 0.417 0.117 0.204 0.647 0.292 1.000
+score1: -21976.712891
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B005.wav
+STAT: 99053 samples (6.19 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> dijelaskan masuknya masing wang pesing tentang salemba </s>
+pass1_best_wordseq: <s> dijelaskan masuknya masing wang pesing tentang salemba </s>
+pass1_best_phonemeseq: sil | d i j @ l a s k a n | m a s u k ny a | m a s i ng | w a ng | p @ s i ng | t @ n t a ng | s a l e m b a | sil
+pass1_best_score: -19671.519531
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 1363 generated, 851 pushed, 76 nodes popped in 617
+sentence1: <s> dijelaskan masuknya masing wang pusing rutan salemba </s>
+wseq1: <s> dijelaskan masuknya masing wang pusing rutan salemba </s>
+phseq1: sil | d i j @ l a s k a n | m a s u k ny a | m a s i ng | w a ng | p u s i ng | r u t a n | s a l e m b a | sil
+cmscore1: 0.362 0.907 0.535 0.633 0.166 0.297 0.440 0.479 1.000
+score1: -19683.396484
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B006.wav
+STAT: 81866 samples (5.12 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> dilarang corat-coret i panggung pendemo </s>
+pass1_best_wordseq: <s> dilarang corat-coret i panggung pendemo </s>
+pass1_best_phonemeseq: sil | d i l a r a ng | c o r a t c o r e t | i | p a ng g u ng | p @ n d e m o | sil
+pass1_best_score: -15942.895508
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 2791 generated, 1267 pushed, 141 nodes popped in 510
+sentence1: <s> dilarang corat-coret i panggung pendemo </s>
+wseq1: <s> dilarang corat-coret i panggung pendemo </s>
+phseq1: sil | d i l a r a ng | c o r a t c o r e t | i | p a ng g u ng | p @ n d e m o | sil
+cmscore1: 0.161 0.521 0.830 0.129 0.229 0.170 1.000
+score1: -15970.891602
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LMM134F006.wav
+STAT: 115365 samples (7.21 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> ketua nba uzur tv hasan berpendapat bahwa ada capain positif dalam perkembangan di muka disesi </s>
+pass1_best_wordseq: <s> ketua nba uzur tv hasan berpendapat bahwa ada capain positif dalam perkembangan di muka disesi </s>
+pass1_best_phonemeseq: sil | k @ t u a | e n b e a | u z u r | t i f i | h a s a n | b e r p e n d a p a t | b a h w a | a d a | c a p ai n | p o s i t i f | d a l a m | p @ r k @ m b a ng a n | d i | m u k a | d i s @ s i | sil
+pass1_best_score: -26140.621094
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 6461 generated, 2798 pushed, 415 nodes popped in 719
+sentence1: <s> ketua nba uzur tv hasan berpendapat bahwa ada capain positif dalam perkembangan di muka disersi </s>
+wseq1: <s> ketua nba uzur tv hasan berpendapat bahwa ada capain positif dalam perkembangan di muka disersi </s>
+phseq1: sil | k @ t u a | e n b e a | u z u r | t i f i | h a s a n | b e r p e n d a p a t | b a h w a | a d a | c a p ai n | p o s i t i f | d a l a m | p @ r k @ m b a ng a n | d i | m u k a | d i s @ r s i | sil
+cmscore1: 0.683 0.400 0.192 0.433 0.394 0.339 0.469 0.687 0.344 0.241 0.949 0.310 0.830 0.860 0.278 0.140 1.000
+score1: -26195.226562
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LBM187J001.wav
+STAT: 188545 samples (11.78 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> kasus kontroversi yang <euh> pada ke arab waspadalah pendidikan !SIL mantan wakil <unk> menteri hukum denny tim gerai yana </s>
+pass1_best_wordseq: <s> kasus kontroversi yang <euh> pada ke arab waspadalah pendidikan !SIL mantan wakil <unk> menteri hukum denny tim gerai yana </s>
+pass1_best_phonemeseq: sil | k a s u s | k o n t r o f e r s i | y a ng | sil | p a d a | k e | a r a b | w a s p a d a l a h | p @ n d i d i k a n | sil | m a n t a n | w a k i l | sil | m @ n t @ r i | h u k u m | d e n i | t i m | g @ r ai | y a n a | sil
+pass1_best_score: -38837.175781
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 7114 generated, 4166 pushed, 508 nodes popped in 1176
+sentence1: <s> kasus kontroversi yang <euh> pada ke arab waspadalah pendidikan !SIL mantan wakil !SIL menteri hukum denny tim gerai ya nak </s>
+wseq1: <s> kasus kontroversi yang <euh> pada ke arab waspadalah pendidikan !SIL mantan wakil !SIL menteri hukum denny tim gerai ya nak </s>
+phseq1: sil | k a s u s | k o n t r o f e r s i | y a ng | sil | p a d a | k e | a r a b | w a s p a d a l a h | p @ n d i d i k a n | sil | m a n t a n | w a k i l | sil | m @ n t @ r i | h u k u m | d e n i | t i m | g @ r ai | y a | n a k | sil
+cmscore1: 0.159 1.000 0.826 0.234 0.140 0.627 0.418 0.134 0.725 0.427 0.136 0.989 0.331 0.126 0.304 0.814 0.177 0.268 0.182 0.478 0.031 1.000
+score1: -38899.589844
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D006.wav
+STAT: 128474 samples (8.03 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> penguatan majlis permusyawaratan muktamar ke dalam pesidium demisioner <unk> ketua dewan penasihat ketua dewan pakar </s>
+pass1_best_wordseq: <s> penguatan majlis permusyawaratan muktamar ke dalam pesidium demisioner <unk> ketua dewan penasihat ketua dewan pakar </s>
+pass1_best_phonemeseq: sil | p @ ng u a t a n | m a j l i s | p @ r m u sy a w a r a t a n | m u k t a m a r | k @ | d a l a m | p @ s i d i u m | d e m i s i o n e r | sil | k @ t u a | d e w a n | p @ n a s i h a t | @ t u a | d e w a n | p a k a r | sil
+pass1_best_score: -26811.937500
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 2867 generated, 1894 pushed, 229 nodes popped in 801
+sentence1: <s> penguatan majelis permusyawaratan muktamar pada pesidium demisioner <unk> ketua dewan penasihat ketua dewan pakar </s>
+wseq1: <s> penguatan majelis permusyawaratan muktamar pada pesidium demisioner <unk> ketua dewan penasihat ketua dewan pakar </s>
+phseq1: sil | p @ ng u a t a n | m a j @ l i s | p @ r m u sy a w a r a t a n | m u k t a m a r | p a d a | p @ s i d i u m | d e m i s i o n e r | sil | k @ t u a | d e w a n | p @ n a s i h a t | @ t u a | d e w a n | p a k a r | sil
+cmscore1: 0.245 0.150 0.597 0.378 0.829 0.094 0.913 0.619 0.155 0.882 0.958 0.397 0.527 0.820 0.276 1.000
+score1: -26838.898438
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B020.wav
+STAT: 103565 samples (6.47 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> dulu glenn yusup dijanjikan dinilai lamban </s>
+pass1_best_wordseq: <s> dulu glenn yusup dijanjikan dinilai lamban </s>
+pass1_best_phonemeseq: sil | d u l u | g l e n | y u s u p | d i j a n j i k a n | d i n i l ai | l a m b a n | sil
+pass1_best_score: -20005.417969
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 2546 generated, 1111 pushed, 127 nodes popped in 645
+sentence1: <s> dulu glenn yusup dijanjikan dinilai lamban </s>
+wseq1: <s> dulu glenn yusup dijanjikan dinilai lamban </s>
+phseq1: sil | d u l u | g l e n | y u s u p | d i j a n j i k a n | d i n i l ai | l a m b a n | sil
+cmscore1: 0.201 0.543 0.086 0.309 0.199 0.800 0.092 1.000
+score1: -20032.917969
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C027.wav
+STAT: 121275 samples (7.58 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> di yang enggan hal itu dalam jalan persnya lewat email yang diterima kompas </s>
+pass1_best_wordseq: <s> di yang enggan hal itu dalam jalan persnya lewat email yang diterima kompas </s>
+pass1_best_phonemeseq: sil | d i | y a ng | @ ng g a n | h a l | i t u | d a l a m | j a l a n | p e r s ny a | l e w a t | i m e l | y a ng | d i t @ r i m a | k o m p a s | sil
+pass1_best_score: -24527.576172
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 513 generated, 513 pushed, 34 nodes popped in 756
+sentence1: <s> di yang enggan hal itu dalam siaran persnya lewat email yang diterima kompas </s>
+wseq1: <s> di yang enggan hal itu dalam siaran persnya lewat email yang diterima kompas </s>
+phseq1: sil | d i | y a ng | @ ng g a n | h a l | i t u | d a l a m | s i a r a n | p e r s ny a | l e w a t | i m e l | y a ng | d i t @ r i m a | k o m p a s | sil
+cmscore1: 0.193 0.251 0.951 0.159 0.724 0.900 0.818 0.235 0.637 0.597 0.161 0.975 0.905 0.622 1.000
+score1: -24534.296875
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C029.wav
+STAT: 76741 samples (4.80 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> dia law budaya dan silahturahmi nasional </s>
+pass1_best_wordseq: <s> dia law budaya dan silahturahmi nasional </s>
+pass1_best_phonemeseq: sil | d i a | l au | b u d a y a | d a n | s i l a h t u r a h m i | n a s i o n a l | sil
+pass1_best_score: -15374.560547
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 688 generated, 648 pushed, 44 nodes popped in 478
+sentence1: <s> dia law budaya dan silahturahmi nasional </s>
+wseq1: <s> dia law budaya dan silahturahmi nasional </s>
+phseq1: sil | d i a | l au | b u d a y a | d a n | s i l a h t u r a h m i | n a s i o n a l | sil
+cmscore1: 0.259 0.154 0.229 0.888 0.702 0.798 0.285 1.000
+score1: -15398.892578
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B015.wav
+STAT: 93954 samples (5.87 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> dokumen apa saja hyang hal zeya siapkan disertai </s>
+pass1_best_wordseq: <s> dokumen apa saja hyang hal zeya siapkan disertai </s>
+pass1_best_phonemeseq: sil | d o k u m e n | a p a | s a j a | h y a ng | h a l | z @ y a | s i a p k a n | d i s @ r t a i | sil
+pass1_best_score: -18321.724609
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 4889 generated, 1912 pushed, 229 nodes popped in 585
+sentence1: <s> dokumen apa sejarah yang harus si akan disertai </s>
+wseq1: <s> dokumen apa sejarah yang harus si akan disertai </s>
+phseq1: sil | d o k u m e n | a p a | s @ j a r a h | y a ng | h a r u s | e s i | a k a n | d i s @ r t a i | sil
+cmscore1: 0.222 0.575 0.104 0.151 0.420 0.402 0.145 0.135 0.171 1.000
+score1: -18350.521484
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C008.wav
+STAT: 111805 samples (6.99 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> dengan cara memperpanjang birokrasi pengurusan berbagai izin dan dokumen </s>
+pass1_best_wordseq: <s> dengan cara memperpanjang birokrasi pengurusan berbagai izin dan dokumen </s>
+pass1_best_phonemeseq: sil | d @ ng a n | c a r a | m @ m p @ r p a n j a ng | b i r o k r a s i | p @ ng u r u s a n | b e r b a g ai | i z i n | d a n | d o k u m e n | sil
+pass1_best_score: -22844.208984
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 103 generated, 103 pushed, 14 nodes popped in 697
+sentence1: <s> dengan cara memperpanjang birokrasi pengurusan berbagai izin dan dokumen </s>
+wseq1: <s> dengan cara memperpanjang birokrasi pengurusan berbagai izin dan dokumen </s>
+phseq1: sil | d @ ng a n | c a r a | m @ m p @ r p a n j a ng | b i r o k r a s i | p @ ng u r u s a n | b e r b a g ai | i z i n | d a n | d o k u m e n | sil
+cmscore1: 0.294 0.916 0.761 0.999 1.000 0.699 0.654 0.985 0.481 0.364 1.000
+score1: -22856.871094
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C016.wav
+STAT: 105972 samples (6.62 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> di jepang seberapa sabri kan digunakan sebagai mej ya tangan </s>
+pass1_best_wordseq: <s> di jepang seberapa sabri kan digunakan sebagai mej ya tangan </s>
+pass1_best_phonemeseq: sil | d i | j @ p a ng | s @ b @ r a p a | s a b r i | k a n | d i g u n a k a n | s @ b a g ai | m e j | y a | t a ng a n | sil
+pass1_best_score: -21148.923828
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 4177 generated, 1894 pushed, 195 nodes popped in 660
+sentence1: <s> di jepang seberapa sabri kan digunakan sebagai mej ya tangan </s>
+wseq1: <s> di jepang seberapa sabri kan digunakan sebagai mej ya tangan </s>
+phseq1: sil | d i | j @ p a ng | s @ b @ r a p a | s a b r i | k a n | d i g u n a k a n | s @ b a g ai | m e j | y a | t a ng a n | sil
+cmscore1: 0.232 0.875 0.380 0.283 0.194 0.166 0.516 0.831 0.136 0.434 0.261 1.000
+score1: -21185.462891
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LBM187J010.wav
+STAT: 194633 samples (12.16 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> ksebagai maman diketahu ibu sama <unk> bahwa rancangan tumbang mumbang <euh> tersebut <unk> telah diselesaikan <euh> pembahasannya </s>
+pass1_best_wordseq: <s> ksebagai maman diketahu ibu sama <unk> bahwa rancangan tumbang mumbang <euh> tersebut <unk> telah diselesaikan <euh> pembahasannya </s>
+pass1_best_phonemeseq: sil | k s @ b a g ai | m a m a n | d i k @ t a h u | i b u | s a m a | sil | b a h w a | r a n c a ng a n | t u m b a ng | m u m b a ng | sil | t @ r s @ b u t | sil | t @ l a h | d i s @ l @ s ai k a n | sil | p @ m b a h a s a n ny a | sil
+pass1_best_score: -39817.039062
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 5755 generated, 2908 pushed, 397 nodes popped in 1214
+sentence1: <s> ksebagai maman diketahu ibu sama !SIL bahwa rancangan tumbang mumbang <euh> tersebut <euh> telah diselesaikan <euh> pembahasannya </s>
+wseq1: <s> ksebagai maman diketahu ibu sama !SIL bahwa rancangan tumbang mumbang <euh> tersebut <euh> telah diselesaikan <euh> pembahasannya </s>
+phseq1: sil | k s @ b a g ai | m a m a n | d i k @ t a h u | i b u | s a m a | sil | b a h w a | r a n c a ng a n | t u m b a ng | m u m b a ng | sil | t @ r s @ b u t | sil | t @ l a h | d i s @ l @ s ai k a n | sil | p @ m b a h a s a n ny a | sil
+cmscore1: 0.147 0.798 0.158 0.601 0.220 0.590 0.128 0.916 0.592 0.316 0.282 0.142 0.648 0.135 0.543 0.808 0.147 0.660 1.000
+score1: -39878.253906
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B004.wav
+STAT: 123847 samples (7.74 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> die <unk> kyai jaga dengan nu teman yang pitanggang saya wynne </s>
+pass1_best_wordseq: <s> die <unk> kyai jaga dengan nu teman yang pitanggang saya wynne </s>
+pass1_best_phonemeseq: sil | d i e | sil | k y ai | j a g a | d @ ng a n | e n u | t @ m a n | y a ng | p i t a ng g a ng | s a y a | w ai n | sil
+pass1_best_score: -23910.611328
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 6809 generated, 2931 pushed, 338 nodes popped in 772
+sentence1: <s> die !SIL kyai jaga dengan nu teman yang pitanggang sayang wynne </s>
+wseq1: <s> die !SIL kyai jaga dengan nu teman yang pitanggang sayang wynne </s>
+phseq1: sil | d i e | sil | k y ai | j a g a | d @ ng a n | e n u | t @ m a n | y a ng | p i t a ng g a ng | s a y a ng | w ai n | sil
+cmscore1: 0.135 0.168 0.203 0.444 0.228 0.474 0.159 0.133 0.225 0.578 0.200 0.281 1.000
+score1: -23951.691406
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LBM187J012.wav
+STAT: 86147 samples (5.38 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> hadirin dan sidang yang kami mulya kan </s>
+pass1_best_wordseq: <s> hadirin dan sidang yang kami mulya kan </s>
+pass1_best_phonemeseq: sil | h a d i r i n | d a n | s i d a ng | y a ng | k a m i | m u l y a | k a n | sil
+pass1_best_score: -17259.023438
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 1371 generated, 897 pushed, 133 nodes popped in 536
+sentence1: <s> hadirin dan sidang yang kami mulya kan </s>
+wseq1: <s> hadirin dan sidang yang kami mulya kan </s>
+phseq1: sil | h a d i r i n | d a n | s i d a ng | y a ng | k a m i | m u l y a | k a n | sil
+cmscore1: 0.134 0.659 0.438 1.000 0.928 0.615 0.365 0.329 1.000
+score1: -17289.228516
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D030.wav
+STAT: 112306 samples (7.02 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> ketua pt muhamadiyah hajriyanto y tohari merupakan salah seorang pembicara dalam seminar itu </s>
+pass1_best_wordseq: <s> ketua pt muhamadiyah hajriyanto y tohari merupakan salah seorang pembicara dalam seminar itu </s>
+pass1_best_phonemeseq: sil | k @ t u a | p e t e | m u h a m a d i y a h | h a j r i y a n t o | y e | t o h a r i | m @ r u p a k a n | s a l a h | s @ o r a ng | p @ m b i c a r a | d a l a m | s @ m i n a r | i t u | sil
+pass1_best_score: -23787.501953
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 499 generated, 499 pushed, 32 nodes popped in 700
+sentence1: <s> ketua pp muhammadiyah hajriyanto y tohari merupakan salah seorang pembicara dalam seminar itu </s>
+wseq1: <s> ketua pp muhammadiyah hajriyanto y tohari merupakan salah seorang pembicara dalam seminar itu </s>
+phseq1: sil | k @ t u a | p e p e | m u h a m m a d i y a h | h a j r i y a n t o | y e | t o h a r i | m @ r u p a k a n | s a l a h | s @ o r a ng | p @ m b i c a r a | d a l a m | s @ m i n a r | i t u | sil
+cmscore1: 0.275 0.862 0.440 0.548 0.964 0.756 0.477 0.763 0.469 0.432 0.939 0.651 0.265 0.513 1.000
+score1: -23774.855469
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B013.wav
+STAT: 121366 samples (7.59 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> diterapkan yang kericau bangau rancangan tunggang pertanggung ganteng semen jakarta </s>
+pass1_best_wordseq: <s> diterapkan yang kericau bangau rancangan tunggang pertanggung ganteng semen jakarta </s>
+pass1_best_phonemeseq: sil | d i t @ r a p k a n | y a ng | k @ r i c au | b a ng au | r a n c a ng a n | t u ng g a ng | p @ r t a ng g u ng | g a n t @ ng | s @ m e n | j a k a r t a | sil
+pass1_best_score: -24576.675781
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 7534 generated, 2481 pushed, 286 nodes popped in 757
+sentence1: <s> diterapkan yang kericau bangau rancangan tunggang pertanggung ganteng semen jakarta </s>
+wseq1: <s> diterapkan yang kericau bangau rancangan tunggang pertanggung ganteng semen jakarta </s>
+phseq1: sil | d i t @ r a p k a n | y a ng | k @ r i c au | b a ng au | r a n c a ng a n | t u ng g a ng | p @ r t a ng g u ng | g a n t @ ng | s @ m e n | j a k a r t a | sil
+cmscore1: 0.165 0.165 0.141 0.252 0.186 0.121 0.179 0.225 0.132 0.297 0.739 1.000
+score1: -24623.320312
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B027.wav
+STAT: 97574 samples (6.10 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> elza tgk yang berkomentar kadang gersang dari wartawan </s>
+pass1_best_wordseq: <s> elza tgk yang berkomentar kadang gersang dari wartawan </s>
+pass1_best_phonemeseq: sil | e l z a | t @ ng | y a ng | b e r k o m e n t a r | k a d a ng | g @ r s a ng | d a r i | w a r t a w a n | sil
+pass1_best_score: -19224.402344
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 2574 generated, 1347 pushed, 167 nodes popped in 608
+sentence1: <s> elza tgk yang berkomentar kadang gersang dari wartawan </s>
+wseq1: <s> elza tgk yang berkomentar kadang gersang dari wartawan </s>
+phseq1: sil | e l z a | t @ ng | y a ng | b e r k o m e n t a r | k a d a ng | g @ r s a ng | d a r i | w a r t a w a n | sil
+cmscore1: 0.238 0.452 0.327 0.411 0.460 0.091 0.309 0.276 0.531 1.000
+score1: -19255.332031
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C019.wav
+STAT: 77187 samples (4.82 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> di lapangan golf taman rig yang jaya ranjau </s>
+pass1_best_wordseq: <s> di lapangan golf taman rig yang jaya ranjau </s>
+pass1_best_phonemeseq: sil | d i | l a p a ng a n | g o l f | t a m a n | r i g | y a ng | j a y a | r a n j au | sil
+pass1_best_score: -15667.698242
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 2689 generated, 1354 pushed, 123 nodes popped in 480
+sentence1: <s> di lapangan golf taman rig yang jaya ranjau </s>
+wseq1: <s> di lapangan golf taman rig yang jaya ranjau </s>
+phseq1: sil | d i | l a p a ng a n | g o l f | t a m a n | r i g | y a ng | j a y a | r a n j au | sil
+cmscore1: 0.219 0.819 0.865 0.367 0.135 0.099 0.211 0.275 0.377 1.000
+score1: -15691.403320
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LBM187J006.wav
+STAT: 82323 samples (5.15 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> hadirin dan sidang <unk> yang kami mulya kan </s>
+pass1_best_wordseq: <s> hadirin dan sidang <unk> yang kami mulya kan </s>
+pass1_best_phonemeseq: sil | h a d i r i n | d a n | s i d a ng | sil | y a ng | k a m i | m u l y a | k a n | sil
+pass1_best_score: -16913.542969
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 2650 generated, 1297 pushed, 203 nodes popped in 513
+sentence1: <s> hadirin dan sidang <unk> yang kami mulya kan </s>
+wseq1: <s> hadirin dan sidang <unk> yang kami mulya kan </s>
+phseq1: sil | h a d i r i n | d a n | s i d a ng | sil | y a ng | k a m i | m u l y a | k a n | sil
+cmscore1: 0.133 0.656 0.744 0.537 0.114 0.532 0.453 0.309 0.213 1.000
+score1: -16941.011719
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B12LMM134F013.wav
+STAT: 122712 samples (7.67 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> wakil ketua mpr mahyudin hak melantik anggota pergantian antarwaktu atau piek alwi </s>
+pass1_best_wordseq: <s> wakil ketua mpr mahyudin hak melantik anggota pergantian antarwaktu atau piek alwi </s>
+pass1_best_phonemeseq: sil | w a k i l | k @ t u a | e m p e e r | m a h y u d i n | h a k | m @ l a n t i k | a ng g o t a | p @ r g a n t i a n | a n t a r w a k t u | a t au | p i @ k | a l w i | sil
+pass1_best_score: -27773.480469
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 4692 generated, 2037 pushed, 245 nodes popped in 765
+sentence1: <s> wakil ketua mpr mahyudin hak melantik anggota pergantian antar waktu atau piek alwi </s>
+wseq1: <s> wakil ketua mpr mahyudin hak melantik anggota pergantian antar waktu atau piek alwi </s>
+phseq1: sil | w a k i l | k @ t u a | e m p e e r | m a h y u d i n | h a k | m @ l a n t i k | a ng g o t a | p @ r g a n t i a n | a n t a r | w a k t u | a t au | p i @ k | a l w i | sil
+cmscore1: 0.359 0.898 0.679 0.104 0.596 0.113 0.864 0.661 0.933 0.264 0.153 0.335 0.264 0.148 1.000
+score1: -27806.757812
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A32LTL026B030.wav
+STAT: 94726 samples (5.92 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> yasa zarima liga sanggulnya ferry kamoro shenya </s>
+pass1_best_wordseq: <s> yasa zarima liga sanggulnya ferry kamoro shenya </s>
+pass1_best_phonemeseq: sil | y a s a | z a r i m a | l i g a | s a ng g u l ny a | f e r i | k a m o r o | s e ny a | sil
+pass1_best_score: -19300.103516
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 7510 generated, 2731 pushed, 265 nodes popped in 590
+sentence1: <s> pers azari gelar liga sanggulnya ferry ke moro selnya </s>
+wseq1: <s> pers azari gelar liga sanggulnya ferry ke moro selnya </s>
+phseq1: sil | p e r s | a z a r i | g @ l a r | l i g a | s a ng g u l ny a | f e r i | k @ | m o r o | s e l ny a | sil
+cmscore1: 0.205 0.206 0.193 0.126 0.157 0.177 0.089 0.141 0.170 0.089 1.000
+score1: -19343.189453
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C002.wav
+STAT: 61624 samples (3.85 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> delapan empat datang lima </s>
+pass1_best_wordseq: <s> delapan empat datang lima </s>
+pass1_best_phonemeseq: sil | d @ l a p a n | @ m p a t | d a t a ng | l i m a | sil
+pass1_best_score: -11997.555664
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 1760 generated, 920 pushed, 74 nodes popped in 383
+sentence1: <s> delapan empat delapan lima </s>
+wseq1: <s> delapan empat delapan lima </s>
+phseq1: sil | d @ l a p a n | @ m p a t | d @ l a p a n | l i m a | sil
+cmscore1: 0.101 0.067 0.516 0.107 0.315 1.000
+score1: -12016.540039
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D002.wav
+STAT: 90781 samples (5.67 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> kini yasidi cideng lupakan ketua dewan koma tante bernama peniup atau di ktp </s>
+pass1_best_wordseq: <s> kini yasidi cideng lupakan ketua dewan koma tante bernama peniup atau di ktp </s>
+pass1_best_phonemeseq: sil | k i n i | y a s i d i | c i d @ ng | l u p a k a n | k @ t u a | d e w a n | k o m a | t a n t @ | b e r n a m a | p @ n i u p | a t a u | d i | k a t e p e | sil
+pass1_best_score: -19895.070312
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 6442 generated, 2581 pushed, 283 nodes popped in 565
+sentence1: <s> kini yasidi cideng lupakan ketua dewan koma tante beranggar pengikut atau di ktt </s>
+wseq1: <s> kini yasidi cideng lupakan ketua dewan koma tante beranggar pengikut atau di ktt </s>
+phseq1: sil | k i n i | y a s i d i | c i d @ ng | l u p a k a n | k @ t u a | d e w a n | k o m a | t a n t @ | b e r a ng g a r | p @ ng i k u t | a t a u | d i | k a t e t e | sil
+cmscore1: 0.226 0.105 0.303 0.283 0.611 0.656 0.345 0.434 0.132 0.107 0.306 0.614 0.514 0.293 1.000
+score1: -19947.849609
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/A24LTM083C012.wav
+STAT: 104273 samples (6.52 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> denmas udara walau saya ladung ya dua kali kata wartwan di </s>
+pass1_best_wordseq: <s> denmas udara walau saya ladung ya dua kali kata wartwan di </s>
+pass1_best_phonemeseq: sil | d e n m a s | u d a r a | w a l au | s a y a | l a d u ng | y a | d u a | k a l i | k a t a | w a r t w a n | d i | sil
+pass1_best_score: -21423.906250
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 6619 generated, 2443 pushed, 276 nodes popped in 650
+sentence1: <s> denmas udara walau stok yang agen yang dua kali kata waktu lagi </s>
+wseq1: <s> denmas udara walau stok yang agen yang dua kali kata waktu lagi </s>
+phseq1: sil | d e n m a s | u d a r a | w a l au | s t o k | y a ng | a g @ n | y a ng | d u a | k a l i | k a t a | w a k t u | l a g i | sil
+cmscore1: 0.140 0.473 0.102 0.544 0.196 0.298 0.139 0.308 0.569 0.888 0.099 0.537 0.102 1.000
+score1: -21461.908203
+
+
+------
+### read waveform input
+Stat: adin_file: input speechfile: wav/B11LMM122D014.wav
+STAT: 138274 samples (8.64 sec.)
+STAT: ### speech analysis (waveform -> MFCC)
+### Recognition: 1st pass (LR beam)
+pass1_best: <s> pak operasi budaya satu daerah dan daerah lainnya sanak wah dan saling mengisi membantu <euh> tebing dkk nipindo di syiah </s>
+pass1_best_wordseq: <s> pak operasi budaya satu daerah dan daerah lainnya sanak wah dan saling mengisi membantu <euh> tebing dkk nipindo di syiah </s>
+pass1_best_phonemeseq: sil | p a k | o p @ r a s i | b u d a y a | s a t u | d a e r a h | d a n | d a e r a h | l a i n ny a | s a n a k | w a h | d a n | s a l i ng | m @ ng i s i | m @ m b a n t u | sil | t @ b i ng | d e k a k a | n i p i n d o | d i | sy i a h | sil
+pass1_best_score: -29754.410156
+### Recognition: 2nd pass (RL heuristic best-first)
+STAT: 00 _default: 9426 generated, 3929 pushed, 464 nodes popped in 862
+sentence1: <s> pak operasi budaya satu daerah dan daerah lainnya sanak wah dan saling mengisi membantu <euh> tebing dekat amit indonesia </s>
+wseq1: <s> pak operasi budaya satu daerah dan daerah lainnya sanak wah dan saling mengisi membantu <euh> tebing dekat amit indonesia </s>
+phseq1: sil | p a k | o p @ r a s i | b u d a y a | s a t u | d a e r a h | d a n | d a e r a h | l a i n ny a | s a n a k | w a h | d a n | s a l i ng | m @ ng i s i | m @ m b a n t u | sil | t @ b i ng | d @ k a t | a m i t | i n d o n e s i a | sil
+cmscore1: 0.205 0.227 0.244 0.749 0.440 1.000 0.582 1.000 0.509 0.239 0.159 0.477 0.176 0.627 0.227 0.145 0.583 0.087 0.068 0.157 1.000
+score1: -29802.332031
+
+
+------
+### read waveform input
