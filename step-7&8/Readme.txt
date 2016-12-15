@@ -8,5 +8,7 @@
 7. Jalankan HERest -A -D -T 1 -C config -I aligned.mlf -t 250.0 150.0 3000.0 -S train.scp -H hmm8/macros -H hmm8/hmmdefs -M hmm9 monophones1 
 
 5. Pilih file untuk test, buat test.scp
-6. Jalankan HVite -H macros -H hmmdefs -S test.scp -| '*' -i recout.mlf -w wdnet -p 0.0 -s 5.0 dict_silence monophones1
+
+Recognizer
+6. Jalankan HVite -H hmm9/macros -H hmm9/hmmdefs -S test.scp -l '*' -i recout.mlf -w wdnet -p 0.0 -s 5.0 dict_silence monophones1
 7. Jalankan HResults -I words.mlf monophones1 recout.mlf
